@@ -42,10 +42,10 @@ import java.io.IOException;
  * Rectangle
  */
 public class Rectangle extends ValueType {
-  @SerializedName("X")
+  @SerializedName("x")
   private Double X = null;
 
-  @SerializedName("Y")
+  @SerializedName("y")
   private Double Y = null;
 
   @SerializedName("width")

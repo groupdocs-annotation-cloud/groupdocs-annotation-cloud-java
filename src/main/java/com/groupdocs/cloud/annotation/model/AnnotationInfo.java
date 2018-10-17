@@ -129,6 +129,12 @@ public class AnnotationInfo {
           return b;
         }
       }
+      try {
+        int i = Integer.parseInt(text);
+        return TypeEnum.values()[i];
+      }
+      catch (Exception ex){
+      }
       return null;
     }
 
@@ -178,6 +184,12 @@ public class AnnotationInfo {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
+      }
+      try {
+        int i = Integer.parseInt(text);
+        return AccessEnum.values()[i];
+      }
+      catch (Exception ex){
       }
       return null;
     }

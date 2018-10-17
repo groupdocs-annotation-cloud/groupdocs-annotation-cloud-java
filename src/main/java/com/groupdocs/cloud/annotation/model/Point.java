@@ -42,10 +42,10 @@ import java.io.IOException;
  * Point
  */
 public class Point extends ValueType {
-  @SerializedName("X")
+  @SerializedName("x")
   private Double X = null;
 
-  @SerializedName("Y")
+  @SerializedName("y")
   private Double Y = null;
 
   public Point (Double x, Double y) {
