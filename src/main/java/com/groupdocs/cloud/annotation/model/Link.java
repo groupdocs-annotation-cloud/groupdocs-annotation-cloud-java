@@ -38,9 +38,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
+ * Provides information for the object link This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7
  */
-@ApiModel(description = "Provides information for the object link. This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7")
+@ApiModel(description = "Provides information for the object link This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7")
 public class Link {
   @SerializedName("href")
   private String href = null;
@@ -78,10 +78,10 @@ public class Link {
   }
 
    /**
-   * atom:link elements MAY have a \&quot;rel\&quot; attribute that indicates the link relation type.  If the \&quot;rel\&quot; attribute is not present, the link element MUST be interpreted as if the link relation type is \&quot;alternate\&quot;.
+   * atom:link elements MAY have a \&quot;rel\&quot; attribute that indicates the link relation type. If the \&quot;rel\&quot; attribute is not present, the link element MUST be interpreted as if the link relation type is \&quot;alternate\&quot;
    * @return rel
   **/
-  @ApiModelProperty(value = "atom:link elements MAY have a \"rel\" attribute that indicates the link relation type.  If the \"rel\" attribute is not present, the link element MUST be interpreted as if the link relation type is \"alternate\".")
+  @ApiModelProperty(value = "atom:link elements MAY have a \"rel\" attribute that indicates the link relation type. If the \"rel\" attribute is not present, the link element MUST be interpreted as if the link relation type is \"alternate\"")
   public String getRel() {
     return rel;
   }
@@ -96,10 +96,10 @@ public class Link {
   }
 
    /**
-   * On the link element, the \&quot;type\&quot; attribute&#39;s value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced.  Note that the type attribute does not override the actual media type returned with the representation.
+   * On the link element, the \&quot;type\&quot; attribute&#39;s value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced. Note that the type attribute does not override the actual media type returned with the representation
    * @return type
   **/
-  @ApiModelProperty(value = "On the link element, the \"type\" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced.  Note that the type attribute does not override the actual media type returned with the representation.")
+  @ApiModelProperty(value = "On the link element, the \"type\" attribute's value is an advisory media type: it is a hint about the type of the representation that is expected to be returned when the value of the href attribute is dereferenced. Note that the type attribute does not override the actual media type returned with the representation")
   public String getType() {
     return type;
   }
@@ -114,10 +114,10 @@ public class Link {
   }
 
    /**
-   * The \&quot;title\&quot; attribute conveys human-readable information about the link.  The content of the \&quot;title\&quot; attribute is Language-Sensitive.
+   * The \&quot;title\&quot; attribute conveys human-readable information about the link. The content of the \&quot;title\&quot; attribute is Language-Sensitive
    * @return title
   **/
-  @ApiModelProperty(value = "The \"title\" attribute conveys human-readable information about the link.  The content of the \"title\" attribute is Language-Sensitive.")
+  @ApiModelProperty(value = "The \"title\" attribute conveys human-readable information about the link. The content of the \"title\" attribute is Language-Sensitive")
   public String getTitle() {
     return title;
   }

@@ -33,19 +33,19 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.groupdocs.cloud.annotation.model.ValueType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Rectangle
+ * Describes rectangle where annotation will be placed
  */
-public class Rectangle extends ValueType {
-  @SerializedName("x")
+@ApiModel(description = "Describes rectangle where annotation will be placed")
+public class Rectangle {
+  @SerializedName("X")
   private Double X = null;
 
-  @SerializedName("y")
+  @SerializedName("Y")
   private Double Y = null;
 
   @SerializedName("width")
@@ -54,18 +54,16 @@ public class Rectangle extends ValueType {
   @SerializedName("height")
   private Double height = null;
 
-  public Rectangle(Double x, Double y, Double width, Double height) {
-    this.X = x;
-    this.Y = y;
-    this.width = width;
-    this.height = height;
+  public Rectangle X(Double X) {
+    this.X = X;
+    return this;
   }
 
    /**
-   * Gets or sets the x.
+   * Gets or sets the x coordinate of the rectangle upper left corner
    * @return X
   **/
-  @ApiModelProperty(value = "Gets or sets the x.")
+  @ApiModelProperty(required = true, value = "Gets or sets the x coordinate of the rectangle upper left corner")
   public Double getX() {
     return X;
   }
@@ -80,10 +78,10 @@ public class Rectangle extends ValueType {
   }
 
    /**
-   * Gets or sets the y.
+   * Gets or sets the y coordinate of the rectangle upper left corner
    * @return Y
   **/
-  @ApiModelProperty(value = "Gets or sets the y.")
+  @ApiModelProperty(required = true, value = "Gets or sets the y coordinate of the rectangle upper left corner")
   public Double getY() {
     return Y;
   }
@@ -98,10 +96,10 @@ public class Rectangle extends ValueType {
   }
 
    /**
-   * Gets or sets the width.
+   * Gets or sets the rectangle width
    * @return width
   **/
-  @ApiModelProperty(value = "Gets or sets the width.")
+  @ApiModelProperty(required = true, value = "Gets or sets the rectangle width")
   public Double getWidth() {
     return width;
   }
@@ -116,10 +114,10 @@ public class Rectangle extends ValueType {
   }
 
    /**
-   * Gets or sets the height.
+   * Gets or sets the rectangle height
    * @return height
   **/
-  @ApiModelProperty(value = "Gets or sets the height.")
+  @ApiModelProperty(required = true, value = "Gets or sets the rectangle height")
   public Double getHeight() {
     return height;
   }
@@ -141,13 +139,12 @@ public class Rectangle extends ValueType {
     return Objects.equals(this.X, rectangle.X) &&
         Objects.equals(this.Y, rectangle.Y) &&
         Objects.equals(this.width, rectangle.width) &&
-        Objects.equals(this.height, rectangle.height) &&
-        super.equals(o);
+        Objects.equals(this.height, rectangle.height);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(X, Y, width, height, super.hashCode());
+    return Objects.hash(X, Y, width, height);
   }
 
 
@@ -155,7 +152,7 @@ public class Rectangle extends ValueType {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Rectangle {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    X: ").append(toIndentedString(X)).append("\n");
     sb.append("    Y: ").append(toIndentedString(Y)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");

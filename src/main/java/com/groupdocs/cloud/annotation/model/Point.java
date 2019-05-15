@@ -33,31 +33,31 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.groupdocs.cloud.annotation.model.ValueType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Point
+ * Describes point where annotation will be placed
  */
-public class Point extends ValueType {
-  @SerializedName("x")
+@ApiModel(description = "Describes point where annotation will be placed")
+public class Point {
+  @SerializedName("X")
   private Double X = null;
 
-  @SerializedName("y")
+  @SerializedName("Y")
   private Double Y = null;
 
-  public Point (Double x, Double y) {
-    this.X = x;
-    this.Y = y;
+  public Point X(Double X) {
+    this.X = X;
+    return this;
   }
 
    /**
-   * Gets or sets the x.
+   * Gets or sets the x coordinate
    * @return X
   **/
-  @ApiModelProperty(value = "Gets or sets the x.")
+  @ApiModelProperty(required = true, value = "Gets or sets the x coordinate")
   public Double getX() {
     return X;
   }
@@ -72,10 +72,10 @@ public class Point extends ValueType {
   }
 
    /**
-   * Gets or sets the y.
+   * Gets or sets the y coordinate
    * @return Y
   **/
-  @ApiModelProperty(value = "Gets or sets the y.")
+  @ApiModelProperty(required = true, value = "Gets or sets the y coordinate")
   public Double getY() {
     return Y;
   }
@@ -95,13 +95,12 @@ public class Point extends ValueType {
     }
     Point point = (Point) o;
     return Objects.equals(this.X, point.X) &&
-        Objects.equals(this.Y, point.Y) &&
-        super.equals(o);
+        Objects.equals(this.Y, point.Y);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(X, Y, super.hashCode());
+    return Objects.hash(X, Y);
   }
 
 
@@ -109,7 +108,7 @@ public class Point extends ValueType {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Point {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
     sb.append("    X: ").append(toIndentedString(X)).append("\n");
     sb.append("    Y: ").append(toIndentedString(Y)).append("\n");
     sb.append("}");

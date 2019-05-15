@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="DeletePagesRequest.java">
- *   Copyright (c) 2003-2018 Aspose Pty Ltd
+ *   Copyright (c) 2003-2019 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -10,10 +10,10 @@
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *
+ * 
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *
+ * 
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,6 +28,7 @@
 package com.groupdocs.cloud.annotation.model.requests;
 
 import java.util.Objects;
+import java.util.List;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,76 +44,76 @@ import java.io.File;
  * Request model for deletePages method.
  */
 public class DeletePagesRequest {
-    @SerializedName("name")
-    private String name = null;
-
-    @SerializedName("folder")
-    private String folder = null;
-
+    
     /**
-     * The document name.
-     * @return The document name.
-     **/
-    @ApiModelProperty(example = "name_example", required = true, value = "The document name.")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    * Initializes a new instance of the DeletePagesRequest class.
+    */      
+    public DeletePagesRequest()
+    {
     }
 
     /**
-     * The folder name.
-     * @return The folder name.
-     **/
-    @ApiModelProperty(example = "folder_example", value = "The folder name.")
-    public String getFolder() {
-        return folder;
+    * Initializes a new instance of the DeletePagesRequest class.    
+    * @param filePath Document path in storage
+    */
+    public DeletePagesRequest(String filePath)
+    {
+        this.filePath = filePath;
     }
 
-    public void setFolder(String folder) {
-        this.folder = folder;
+  @SerializedName("filePath")
+  private String filePath = null;
+
+  /**
+   * Document path in storage
+   * @return Document path in storage
+  **/
+  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
+  public String getfilePath() {
+    return filePath;
+  }
+
+  public void setfilePath(String filePath) {
+    this.filePath = filePath;
+  }
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
     }
 
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        DeletePagesRequest request = (DeletePagesRequest) o;
-        return Objects.equals(this.name, request.name) &&
-                Objects.equals(this.folder, request.folder);
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    
+    DeletePagesRequest request = (DeletePagesRequest) o;
+    return Objects.equals(this.filePath, request.filePath);
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, folder);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(filePath);
+  }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class DeletePages {\n");
-        sb.append("    name: ").append(toIndentedString(name)).append("\n");
-        sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class DeletePages {\n");
+    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
 
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(java.lang.Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

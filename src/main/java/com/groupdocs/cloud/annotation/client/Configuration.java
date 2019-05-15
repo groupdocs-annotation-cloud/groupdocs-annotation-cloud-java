@@ -34,7 +34,7 @@ public class Configuration {
 
     private String appKey = null;
 
-    private String apiVersion = "/v1";
+    private String apiVersion = "/v2.0";
 
     private String apiBaseUrl = "https://api.groupdocs.cloud";
 
@@ -105,25 +105,25 @@ public class Configuration {
     }
 
     /**
-     * Gets connection timeout in miliseconds
+     * Gets connection timeout in milliseconds, default value is 60 * 1000 (60 seconds)
      *
-     * @return Timeout in miliseconds 
+     * @return Timeout in milliseconds 
      */
     public int getTimeout() {
         return timeout;
     }
 
     /**
-     * Sets connection timeout in miliseconds
+     * Sets connection timeout in milliseconds, default value is 60 * 1000 (60 seconds)
      *
-     * @param timeout Timeout in miliseconds 
+     * @param timeout Timeout in milliseconds 
      */
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
 
     /**
-     * Gets Server URL e.g. https://api.groupdocs.cloud/v1
+     * Gets Server URL e.g. https://api.groupdocs.cloud/v2.0
      *
      * @return Server URL
      */

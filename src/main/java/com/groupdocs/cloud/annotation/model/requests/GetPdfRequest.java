@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="GetPdfRequest.java">
- *   Copyright (c) 2003-2018 Aspose Pty Ltd
+ *   Copyright (c) 2003-2019 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -10,10 +10,10 @@
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *
+ * 
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *
+ * 
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,6 +28,7 @@
 package com.groupdocs.cloud.annotation.model.requests;
 
 import java.util.Objects;
+import java.util.List;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,94 +44,76 @@ import java.io.File;
  * Request model for getPdf method.
  */
 public class GetPdfRequest {
-    @SerializedName("name")
-    private String name = null;
-
-    @SerializedName("folder")
-    private String folder = null;
-
-    @SerializedName("password")
-    private String password = null;
-
+    
     /**
-     * The document name.
-     * @return The document name.
-     **/
-    @ApiModelProperty(example = "name_example", required = true, value = "The document name.")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    * Initializes a new instance of the GetPdfRequest class.
+    */      
+    public GetPdfRequest()
+    {
     }
 
     /**
-     * The folder name.
-     * @return The folder name.
-     **/
-    @ApiModelProperty(example = "folder_example", value = "The folder name.")
-    public String getFolder() {
-        return folder;
+    * Initializes a new instance of the GetPdfRequest class.    
+    * @param filePath Path to document in storage
+    */
+    public GetPdfRequest(String filePath)
+    {
+        this.filePath = filePath;
     }
 
-    public void setFolder(String folder) {
-        this.folder = folder;
+  @SerializedName("filePath")
+  private String filePath = null;
+
+  /**
+   * Path to document in storage
+   * @return Path to document in storage
+  **/
+  @ApiModelProperty(example = "filePath_example", required = true, value = "Path to document in storage")
+  public String getfilePath() {
+    return filePath;
+  }
+
+  public void setfilePath(String filePath) {
+    this.filePath = filePath;
+  }
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
     }
 
-    /**
-     * The document password.
-     * @return The document password.
-     **/
-    @ApiModelProperty(example = "password_example", value = "The document password.")
-    public String getPassword() {
-        return password;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    
+    GetPdfRequest request = (GetPdfRequest) o;
+    return Objects.equals(this.filePath, request.filePath);
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
+  @Override
+  public int hashCode() {
+    return Objects.hash(filePath);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class GetPdf {\n");
+    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
     }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        GetPdfRequest request = (GetPdfRequest) o;
-        return Objects.equals(this.name, request.name) &&
-                Objects.equals(this.folder, request.folder) &&
-                Objects.equals(this.password, request.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, folder, password);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class GetPdf {\n");
-        sb.append("    name: ").append(toIndentedString(name)).append("\n");
-        sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
-        sb.append("    password: ").append(toIndentedString(password)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(java.lang.Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

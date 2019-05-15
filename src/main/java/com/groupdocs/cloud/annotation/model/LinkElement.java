@@ -39,9 +39,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Reference to document.
+ * Reference to document
  */
-@ApiModel(description = "Reference to document.")
+@ApiModel(description = "Reference to document")
 public class LinkElement {
   @SerializedName("link")
   private AnnotationApiLink link = null;
@@ -52,10 +52,10 @@ public class LinkElement {
   }
 
    /**
-   * Link to the document.
+   * Link to the document
    * @return link
   **/
-  @ApiModelProperty(value = "Link to the document.")
+  @ApiModelProperty(value = "Link to the document")
   public AnnotationApiLink getLink() {
     return link;
   }

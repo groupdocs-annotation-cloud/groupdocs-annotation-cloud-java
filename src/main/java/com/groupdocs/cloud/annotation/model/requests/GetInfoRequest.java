@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="GetInfoRequest.java">
- *   Copyright (c) 2003-2018 Aspose Pty Ltd
+ *   Copyright (c) 2003-2019 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -10,10 +10,10 @@
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *
+ * 
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *
+ * 
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,6 +28,7 @@
 package com.groupdocs.cloud.annotation.model.requests;
 
 import java.util.Objects;
+import java.util.List;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,94 +44,96 @@ import java.io.File;
  * Request model for getInfo method.
  */
 public class GetInfoRequest {
-    @SerializedName("name")
-    private String name = null;
-
-    @SerializedName("folder")
-    private String folder = null;
-
-    @SerializedName("password")
-    private String password = null;
-
+    
     /**
-     * The document name.
-     * @return The document name.
-     **/
-    @ApiModelProperty(example = "name_example", required = true, value = "The document name.")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    * Initializes a new instance of the GetInfoRequest class.
+    */      
+    public GetInfoRequest()
+    {
     }
 
     /**
-     * The folder name.
-     * @return The folder name.
-     **/
-    @ApiModelProperty(example = "folder_example", value = "The folder name.")
-    public String getFolder() {
-        return folder;
-    }
-
-    public void setFolder(String folder) {
-        this.folder = folder;
-    }
-
-    /**
-     * The document password.
-     * @return The document password.
-     **/
-    @ApiModelProperty(example = "password_example", value = "The document password.")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+    * Initializes a new instance of the GetInfoRequest class.    
+    * @param filePath Document path in storage
+    * @param password Source document password
+    */
+    public GetInfoRequest(String filePath, String password)
+    {
+        this.filePath = filePath;
         this.password = password;
     }
 
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
+  @SerializedName("filePath")
+  private String filePath = null;
 
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+  @SerializedName("password")
+  private String password = null;
 
-        GetInfoRequest request = (GetInfoRequest) o;
-        return Objects.equals(this.name, request.name) &&
-                Objects.equals(this.folder, request.folder) &&
-                Objects.equals(this.password, request.password);
+  /**
+   * Document path in storage
+   * @return Document path in storage
+  **/
+  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
+  public String getfilePath() {
+    return filePath;
+  }
+
+  public void setfilePath(String filePath) {
+    this.filePath = filePath;
+  }
+
+  /**
+   * Source document password
+   * @return Source document password
+  **/
+  @ApiModelProperty(example = "password_example", value = "Source document password")
+  public String getpassword() {
+    return password;
+  }
+
+  public void setpassword(String password) {
+    this.password = password;
+  }
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, folder, password);
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    
+    GetInfoRequest request = (GetInfoRequest) o;
+    return Objects.equals(this.filePath, request.filePath) &&
+        Objects.equals(this.password, request.password);
+  }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class GetInfo {\n");
-        sb.append("    name: ").append(toIndentedString(name)).append("\n");
-        sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
-        sb.append("    password: ").append(toIndentedString(password)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(filePath, password);
+  }
 
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(java.lang.Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class GetInfo {\n");
+    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 }
+

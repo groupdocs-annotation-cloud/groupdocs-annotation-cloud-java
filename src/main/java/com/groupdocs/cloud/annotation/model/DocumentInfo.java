@@ -42,14 +42,15 @@ import java.util.List;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * DocumentInfo
+ * Describes document basic info
  */
+@ApiModel(description = "Describes document basic info")
 public class DocumentInfo {
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("folder")
-  private String folder = null;
+  @SerializedName("path")
+  private String path = null;
 
   @SerializedName("extension")
   private String extension = null;
@@ -72,10 +73,10 @@ public class DocumentInfo {
   }
 
    /**
-   * Get name
+   * Gets or sets the document name
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the document name")
   public String getName() {
     return name;
   }
@@ -84,22 +85,22 @@ public class DocumentInfo {
     this.name = name;
   }
 
-  public DocumentInfo folder(String folder) {
-    this.folder = folder;
+  public DocumentInfo path(String path) {
+    this.path = path;
     return this;
   }
 
    /**
-   * Get folder
-   * @return folder
+   * Gets or sets the document path
+   * @return path
   **/
-  @ApiModelProperty(value = "")
-  public String getFolder() {
-    return folder;
+  @ApiModelProperty(value = "Gets or sets the document path")
+  public String getPath() {
+    return path;
   }
 
-  public void setFolder(String folder) {
-    this.folder = folder;
+  public void setPath(String path) {
+    this.path = path;
   }
 
   public DocumentInfo extension(String extension) {
@@ -108,10 +109,10 @@ public class DocumentInfo {
   }
 
    /**
-   * Get extension
+   * Gets or sets the document extension
    * @return extension
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the document extension")
   public String getExtension() {
     return extension;
   }
@@ -126,10 +127,10 @@ public class DocumentInfo {
   }
 
    /**
-   * Get fileFormat
+   * Gets or sets the file format
    * @return fileFormat
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the file format")
   public String getFileFormat() {
     return fileFormat;
   }
@@ -144,10 +145,10 @@ public class DocumentInfo {
   }
 
    /**
-   * Get size
+   * Gets or sets the document size
    * @return size
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the document size")
   public Long getSize() {
     return size;
   }
@@ -162,10 +163,10 @@ public class DocumentInfo {
   }
 
    /**
-   * Get dateModified
+   * Gets or sets the document date modified
    * @return dateModified
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the document date modified")
   public OffsetDateTime getDateModified() {
     return dateModified;
   }
@@ -188,10 +189,10 @@ public class DocumentInfo {
   }
 
    /**
-   * Get pages
+   * Gets or sets the pages
    * @return pages
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the pages")
   public List<PageInfo> getPages() {
     return pages;
   }
@@ -211,7 +212,7 @@ public class DocumentInfo {
     }
     DocumentInfo documentInfo = (DocumentInfo) o;
     return Objects.equals(this.name, documentInfo.name) &&
-        Objects.equals(this.folder, documentInfo.folder) &&
+        Objects.equals(this.path, documentInfo.path) &&
         Objects.equals(this.extension, documentInfo.extension) &&
         Objects.equals(this.fileFormat, documentInfo.fileFormat) &&
         Objects.equals(this.size, documentInfo.size) &&
@@ -221,7 +222,7 @@ public class DocumentInfo {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, folder, extension, fileFormat, size, dateModified, pages);
+    return Objects.hash(name, path, extension, fileFormat, size, dateModified, pages);
   }
 
 
@@ -231,7 +232,7 @@ public class DocumentInfo {
     sb.append("class DocumentInfo {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    extension: ").append(toIndentedString(extension)).append("\n");
     sb.append("    fileFormat: ").append(toIndentedString(fileFormat)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");

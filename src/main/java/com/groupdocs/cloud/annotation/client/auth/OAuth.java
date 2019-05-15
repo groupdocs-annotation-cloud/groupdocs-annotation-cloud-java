@@ -34,7 +34,6 @@ import com.groupdocs.cloud.annotation.client.Pair;
 import com.squareup.okhttp.*;
 import com.squareup.okhttp.OkHttpClient;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
@@ -43,13 +42,14 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.List;
 
+import com.groupdocs.cloud.annotation.model.ApiError;
+import com.groupdocs.cloud.annotation.model.AuthError;
+
 
 public class OAuth implements Authentication {
   static final int MILLIS_PER_SECOND = 1000;
 
   private volatile String accessToken;
-  private volatile String refreshToken;
-  private volatile Long expirationTimeMillis;
 
   private OkHttpClient httpClient;
   private JSON json;
@@ -62,10 +62,8 @@ public class OAuth implements Authentication {
     return accessToken;
   }
 
-  public synchronized void setAccessToken(String accessToken, String refreshToken, Long expiresIn) {
-    this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
-    this.expirationTimeMillis = System.currentTimeMillis() + expiresIn * MILLIS_PER_SECOND;
+  public synchronized void setAccessToken(String accessToken) {
+    this.accessToken = accessToken;    
   }
 
   public OAuth(Configuration configuration, String appSid, String appKey) {
@@ -88,13 +86,6 @@ public class OAuth implements Authentication {
 
     if(accessToken == null) {
       requestAccessToken();
-    } else {
-      boolean acessTokenExpired = expirationTimeMillis != null 
-        && System.currentTimeMillis() >= expirationTimeMillis;
-
-      if(acessTokenExpired) {
-        refreshAccessToken();
-      }
     }
 
     if (accessToken != null) {
@@ -103,7 +94,7 @@ public class OAuth implements Authentication {
   }
 
   private synchronized void requestAccessToken() throws ApiException {
-    String url = this.tokenUrl + "/oauth2/token";
+    String url = this.tokenUrl + "/connect/token";
 
     final Request.Builder reqBuilder = new Request.Builder().url(url);
     reqBuilder.header("Accept", "application/json");
@@ -122,32 +113,7 @@ public class OAuth implements Authentication {
     try {
         Response response = call.execute();
         OAuthResponse data = handleResponse(response);
-        setAccessToken(data.getAccessToken(), data.getRefreshToken(), data.getExpiresIn());
-    } catch (IOException e) {
-        throw new ApiException(e);
-    }
-  }
-
-  private synchronized void refreshAccessToken() throws ApiException {
-    String url = this.tokenUrl + "/oauth2/token";
-
-    final Request.Builder reqBuilder = new Request.Builder().url(url);
-    reqBuilder.header("Accept", "application/json");
-    reqBuilder.header("Content-Type", "application/x-www-form-urlencoded");
-    
-    FormEncodingBuilder formBuilder  = new FormEncodingBuilder();
-    formBuilder.add("grant_type", "refresh_token");
-    formBuilder.add("refresh_token", this.refreshToken);
-    RequestBody reqBody = formBuilder.build();
-    
-    Request request = reqBuilder.method("POST", reqBody).build();
-    
-    Call call = httpClient.newCall(request);
-    
-    try {
-        Response response = call.execute();
-        OAuthResponse data = handleResponse(response);
-        setAccessToken(data.getAccessToken(), data.getRefreshToken(), data.getExpiresIn());
+        setAccessToken(data.getAccessToken());
     } catch (IOException e) {
         throw new ApiException(e);
     }
@@ -161,7 +127,7 @@ public class OAuth implements Authentication {
                   try {
                       response.body().close();
                   } catch (IOException e) {
-                      throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
+                      throw new ApiException(response.message(), response.code());
                   }
               }
               return null;
@@ -169,15 +135,37 @@ public class OAuth implements Authentication {
               return deserialize(response);
           }
       } else {
-          String respBody = null;
-          if (response.body() != null) {
-              try {
-                  respBody = response.body().string();
-              } catch (IOException e) {
-                  throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
-              }
+         if (response.body() != null) {
+            String respBody;
+
+            try {
+              respBody = response.body().string();
+            } catch (Exception e) {
+              throw new ApiException(response.message(), response.code());
+            }
+
+            ApiError apiError = null;
+            try {
+              apiError = json.deserialize(respBody, ApiError.class);
+            } catch (Exception e) {
+              //NOTE: ignore
+            }
+            if(apiError != null && apiError.getError() != null) {
+              throw new ApiException(apiError.getError().getMessage(), response.code());
+            }   
+            
+            AuthError authError = null;
+            try {
+              authError = json.deserialize(respBody, AuthError.class);
+            } catch (Exception e) {
+              //NOTE: ignore
+            }
+            if(authError != null && authError.getErrorMessage() != null) {
+              throw new ApiException(authError.getErrorMessage(), response.code());
+            }
           }
-          throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), respBody);
+
+          throw new ApiException(response.message(), response.code());
       }
   }
 
@@ -212,21 +200,6 @@ public class OAuth implements Authentication {
 
     @SerializedName("expires_in")
     private Long expiresIn = null;
-
-    @SerializedName("refresh_token")
-    private String refreshToken = null;
-
-    @SerializedName("client_id")
-    private String clientId = null;
-
-    @SerializedName("clientRefreshTokenLifeTimeInMinutes")
-    private String clientRefreshTokenLifeTimeInMinutes = null;
-
-    @SerializedName(".issued")
-    private String issued = null;
-
-    @SerializedName(".expires")
-    private String expires = null;
 
     public OAuthResponse accessToken(String accessToken) {
       this.accessToken = accessToken;
@@ -272,76 +245,6 @@ public class OAuth implements Authentication {
 
     public void setExpiresIn(Long expiresIn) {
       this.expiresIn = expiresIn;
-    }
-
-    public OAuthResponse refreshToken(String refreshToken) {
-      this.refreshToken = refreshToken;
-      return this;
-    }
-
-    @ApiModelProperty(value = "")
-    public String getRefreshToken() {
-      return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-      this.refreshToken = refreshToken;
-    }
-
-    public OAuthResponse clientId(String clientId) {
-      this.clientId = clientId;
-      return this;
-    }
-
-    @ApiModelProperty(value = "")
-    public String getClientId() {
-      return clientId;
-    }
-
-    public void setClientId(String clientId) {
-      this.clientId = clientId;
-    }
-
-    public OAuthResponse clientRefreshTokenLifeTimeInMinutes(String clientRefreshTokenLifeTimeInMinutes) {
-      this.clientRefreshTokenLifeTimeInMinutes = clientRefreshTokenLifeTimeInMinutes;
-      return this;
-    }
-
-    @ApiModelProperty(value = "")
-    public String getClientRefreshTokenLifeTimeInMinutes() {
-      return clientRefreshTokenLifeTimeInMinutes;
-    }
-
-    public void setClientRefreshTokenLifeTimeInMinutes(String clientRefreshTokenLifeTimeInMinutes) {
-      this.clientRefreshTokenLifeTimeInMinutes = clientRefreshTokenLifeTimeInMinutes;
-    }
-
-    public OAuthResponse issued(String issued) {
-      this.issued = issued;
-      return this;
-    }
-
-    @ApiModelProperty(value = "")
-    public String getIssued() {
-      return issued;
-    }
-
-    public void setIssued(String issued) {
-      this.issued = issued;
-    }
-
-    public OAuthResponse expires(String expires) {
-      this.expires = expires;
-      return this;
-    }
-
-    @ApiModelProperty(value = "")
-    public String getExpires() {
-      return expires;
-    }
-
-    public void setExpires(String expires) {
-      this.expires = expires;
     }
   }
 }

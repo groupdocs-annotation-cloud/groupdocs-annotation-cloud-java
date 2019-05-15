@@ -41,8 +41,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * PageInfo
+ * Describes page information
  */
+@ApiModel(description = "Describes page information")
 public class PageInfo {
   @SerializedName("number")
   private Integer number = null;
@@ -53,8 +54,8 @@ public class PageInfo {
   @SerializedName("height")
   private Integer height = null;
 
-  @SerializedName("visible")
-  private Boolean visible = null;
+  @SerializedName("isVisible")
+  private Boolean isVisible = null;
 
   @SerializedName("rows")
   private List<RowInfo> rows = null;
@@ -65,10 +66,10 @@ public class PageInfo {
   }
 
    /**
-   * Get number
+   * Gets or sets the page number
    * @return number
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the page number")
   public Integer getNumber() {
     return number;
   }
@@ -83,10 +84,10 @@ public class PageInfo {
   }
 
    /**
-   * Get width
+   * Gets or sets the page width
    * @return width
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the page width")
   public Integer getWidth() {
     return width;
   }
@@ -101,10 +102,10 @@ public class PageInfo {
   }
 
    /**
-   * Get height
+   * Gets or sets the page height
    * @return height
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the page height")
   public Integer getHeight() {
     return height;
   }
@@ -113,22 +114,22 @@ public class PageInfo {
     this.height = height;
   }
 
-  public PageInfo visible(Boolean visible) {
-    this.visible = visible;
+  public PageInfo isVisible(Boolean isVisible) {
+    this.isVisible = isVisible;
     return this;
   }
 
    /**
-   * Get visible
-   * @return visible
+   * Indicates whether page is visible or not
+   * @return isVisible
   **/
-  @ApiModelProperty(required = true, value = "")
-  public Boolean isVisible() {
-    return visible;
+  @ApiModelProperty(required = true, value = "Indicates whether page is visible or not")
+  public Boolean getIsVisible() {
+    return isVisible;
   }
 
-  public void setVisible(Boolean visible) {
-    this.visible = visible;
+  public void setIsVisible(Boolean isVisible) {
+    this.isVisible = isVisible;
   }
 
   public PageInfo rows(List<RowInfo> rows) {
@@ -145,10 +146,10 @@ public class PageInfo {
   }
 
    /**
-   * Get rows
+   * Gets or sets the list of text rows
    * @return rows
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the list of text rows")
   public List<RowInfo> getRows() {
     return rows;
   }
@@ -170,13 +171,13 @@ public class PageInfo {
     return Objects.equals(this.number, pageInfo.number) &&
         Objects.equals(this.width, pageInfo.width) &&
         Objects.equals(this.height, pageInfo.height) &&
-        Objects.equals(this.visible, pageInfo.visible) &&
+        Objects.equals(this.isVisible, pageInfo.isVisible) &&
         Objects.equals(this.rows, pageInfo.rows);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(number, width, height, visible, rows);
+    return Objects.hash(number, width, height, isVisible, rows);
   }
 
 
@@ -188,7 +189,7 @@ public class PageInfo {
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
-    sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
+    sb.append("    isVisible: ").append(toIndentedString(isVisible)).append("\n");
     sb.append("    rows: ").append(toIndentedString(rows)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -40,8 +40,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RowInfo
+ * Describes text row information
  */
+@ApiModel(description = "Describes text row information")
 public class RowInfo {
   @SerializedName("characterCoordinates")
   private List<Double> characterCoordinates = null;
@@ -78,10 +79,10 @@ public class RowInfo {
   }
 
    /**
-   * Get characterCoordinates
+   * Gets or sets the list of character coordinates
    * @return characterCoordinates
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the list of character coordinates")
   public List<Double> getCharacterCoordinates() {
     return characterCoordinates;
   }
@@ -96,10 +97,10 @@ public class RowInfo {
   }
 
    /**
-   * Get lineHeight
+   * Gets or sets the text line height
    * @return lineHeight
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the text line height")
   public Double getLineHeight() {
     return lineHeight;
   }
@@ -114,10 +115,10 @@ public class RowInfo {
   }
 
    /**
-   * Get lineLeft
+   * Gets or sets the x coordinate of the text line upper left corner
    * @return lineLeft
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the x coordinate of the text line upper left corner")
   public Double getLineLeft() {
     return lineLeft;
   }
@@ -132,10 +133,10 @@ public class RowInfo {
   }
 
    /**
-   * Get lineTop
+   * Gets or sets the y coordinate of the text line upper left corner
    * @return lineTop
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the y coordinate of the text line upper left corner")
   public Double getLineTop() {
     return lineTop;
   }
@@ -150,10 +151,10 @@ public class RowInfo {
   }
 
    /**
-   * Get lineWidth
+   * Gets or sets the text line width
    * @return lineWidth
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Gets or sets the text line width")
   public Double getLineWidth() {
     return lineWidth;
   }
@@ -168,10 +169,10 @@ public class RowInfo {
   }
 
    /**
-   * Get text
+   * Gets or sets the text
    * @return text
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the text")
   public String getText() {
     return text;
   }
@@ -194,10 +195,10 @@ public class RowInfo {
   }
 
    /**
-   * Get textCoordinates
+   * Gets or sets the list of text coordinates
    * @return textCoordinates
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Gets or sets the list of text coordinates")
   public List<Double> getTextCoordinates() {
     return textCoordinates;
   }

@@ -39,8 +39,9 @@ import java.io.IOException;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * AnnotationReplyInfo
+ * Describes annotation reply properties
  */
+@ApiModel(description = "Describes annotation reply properties")
 public class AnnotationReplyInfo {
   @SerializedName("guid")
   private String guid = null;
@@ -69,10 +70,10 @@ public class AnnotationReplyInfo {
   }
 
    /**
-   * Gets or sets the unique identifier.
+   * Gets or sets the unique identifier
    * @return guid
   **/
-  @ApiModelProperty(value = "Gets or sets the unique identifier.")
+  @ApiModelProperty(value = "Gets or sets the unique identifier")
   public String getGuid() {
     return guid;
   }
@@ -87,10 +88,10 @@ public class AnnotationReplyInfo {
   }
 
    /**
-   * Gets or sets the user unique identifier.
+   * Gets or sets the user&#39;s unique identifier
    * @return userGuid
   **/
-  @ApiModelProperty(value = "Gets or sets the user unique identifier.")
+  @ApiModelProperty(value = "Gets or sets the user's unique identifier")
   public String getUserGuid() {
     return userGuid;
   }
@@ -105,10 +106,10 @@ public class AnnotationReplyInfo {
   }
 
    /**
-   * Gets or sets the name of the user.
+   * Gets or sets the user&#39;s name
    * @return userName
   **/
-  @ApiModelProperty(value = "Gets or sets the name of the user.")
+  @ApiModelProperty(value = "Gets or sets the user's name")
   public String getUserName() {
     return userName;
   }
@@ -123,10 +124,10 @@ public class AnnotationReplyInfo {
   }
 
    /**
-   * Gets or sets the user email.
+   * Gets or sets the user email
    * @return userEmail
   **/
-  @ApiModelProperty(value = "Gets or sets the user email.")
+  @ApiModelProperty(value = "Gets or sets the user email")
   public String getUserEmail() {
     return userEmail;
   }
@@ -141,10 +142,10 @@ public class AnnotationReplyInfo {
   }
 
    /**
-   * Gets or sets the message.
+   * Gets or sets the message
    * @return message
   **/
-  @ApiModelProperty(value = "Gets or sets the message.")
+  @ApiModelProperty(value = "Gets or sets the message")
   public String getMessage() {
     return message;
   }
@@ -159,10 +160,10 @@ public class AnnotationReplyInfo {
   }
 
    /**
-   * Gets or sets the replied on.
+   * Gets or sets the reply time
    * @return repliedOn
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the replied on.")
+  @ApiModelProperty(required = true, value = "Gets or sets the reply time")
   public OffsetDateTime getRepliedOn() {
     return repliedOn;
   }
@@ -177,10 +178,10 @@ public class AnnotationReplyInfo {
   }
 
    /**
-   * Gets or sets the parent reply unique identifier.
+   * Gets or sets the parent reply unique identifier
    * @return parentReplyGuid
   **/
-  @ApiModelProperty(value = "Gets or sets the parent reply unique identifier.")
+  @ApiModelProperty(value = "Gets or sets the parent reply unique identifier")
   public String getParentReplyGuid() {
     return parentReplyGuid;
   }

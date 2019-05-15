@@ -32,9 +32,9 @@ import com.groupdocs.cloud.annotation.model.Link;
 import io.swagger.annotations.ApiModel;
 
 /**
- * Provides information for the words api resource link.
+ * Provides information for the words api resource link
  */
-@ApiModel(description = "Provides information for the words api resource link.")
+@ApiModel(description = "Provides information for the words api resource link")
 public class AnnotationApiLink extends Link {
 
   @Override

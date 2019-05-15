@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="GetImportRequest.java">
- *   Copyright (c) 2003-2018 Aspose Pty Ltd
+ *   Copyright (c) 2003-2019 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,6 +28,7 @@
 package com.groupdocs.cloud.annotation.model.requests;
 
 import java.util.Objects;
+import java.util.List;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,52 +44,37 @@ import java.io.File;
  * Request model for getImport method.
  */
 public class GetImportRequest {
-  @SerializedName("name")
-  private String name = null;
+    
+    /**
+    * Initializes a new instance of the GetImportRequest class.
+    */      
+    public GetImportRequest()
+    {
+    }
 
-  @SerializedName("folder")
-  private String folder = null;
+    /**
+    * Initializes a new instance of the GetImportRequest class.    
+    * @param filePath Document path in storage
+    */
+    public GetImportRequest(String filePath)
+    {
+        this.filePath = filePath;
+    }
 
-  @SerializedName("password")
-  private String password = null;
-
-  /**
-   * The document name.
-   * @return The document name.
-  **/
-  @ApiModelProperty(example = "name_example", required = true, value = "The document name.")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
+  @SerializedName("filePath")
+  private String filePath = null;
 
   /**
-   * The folder name.
-   * @return The folder name.
+   * Document path in storage
+   * @return Document path in storage
   **/
-  @ApiModelProperty(example = "folder_example", value = "The folder name.")
-  public String getFolder() {
-    return folder;
+  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
+  public String getfilePath() {
+    return filePath;
   }
 
-  public void setFolder(String folder) {
-    this.folder = folder;
-  }
-
-  /**
-   * The document password.
-   * @return The document password.
-  **/
-  @ApiModelProperty(example = "password_example", value = "The document password.")
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setfilePath(String filePath) {
+    this.filePath = filePath;
   }
 
   @Override
@@ -102,23 +88,19 @@ public class GetImportRequest {
     }
     
     GetImportRequest request = (GetImportRequest) o;
-    return Objects.equals(this.name, request.name) &&
-        Objects.equals(this.folder, request.folder) &&
-        Objects.equals(this.password, request.password);
+    return Objects.equals(this.filePath, request.filePath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, folder, password);
+    return Objects.hash(filePath);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetImport {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    folder: ").append(toIndentedString(folder)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
     sb.append("}");
     return sb.toString();
   }

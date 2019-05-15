@@ -44,8 +44,9 @@ import java.util.List;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * AnnotationInfo
+ * Describes annotation properties
  */
+@ApiModel(description = "Describes annotation properties")
 public class AnnotationInfo {
   @SerializedName("guid")
   private String guid = null;
@@ -78,7 +79,7 @@ public class AnnotationInfo {
   private String svgPath = null;
 
   /**
-   * Gets or sets the type.
+   * Gets or sets the annotation type
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
@@ -106,7 +107,9 @@ public class AnnotationInfo {
     
     TEXTUNDERLINE("TextUnderline"),
     
-    DISTANCE("Distance");
+    DISTANCE("Distance"),
+    
+    ELLIPSE("Ellipse");
 
     private String value;
 
@@ -129,12 +132,6 @@ public class AnnotationInfo {
           return b;
         }
       }
-      try {
-        int i = Integer.parseInt(text);
-        return TypeEnum.values()[i];
-      }
-      catch (Exception ex){
-      }
       return null;
     }
 
@@ -156,7 +153,7 @@ public class AnnotationInfo {
   private TypeEnum type = null;
 
   /**
-   * Gets or sets the access.
+   * Gets or sets the annotation access
    */
   @JsonAdapter(AccessEnum.Adapter.class)
   public enum AccessEnum {
@@ -184,12 +181,6 @@ public class AnnotationInfo {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
-      }
-      try {
-        int i = Integer.parseInt(text);
-        return AccessEnum.values()[i];
-      }
-      catch (Exception ex){
       }
       return null;
     }
@@ -241,16 +232,22 @@ public class AnnotationInfo {
   @SerializedName("fontSize")
   private Double fontSize = null;
 
+  @SerializedName("opacity")
+  private Double opacity = null;
+
+  @SerializedName("angle")
+  private Double angle = null;
+
   public AnnotationInfo guid(String guid) {
     this.guid = guid;
     return this;
   }
 
    /**
-   * Gets or sets the unique identifier.
+   * Gets or sets the unique identifier
    * @return guid
   **/
-  @ApiModelProperty(value = "Gets or sets the unique identifier.")
+  @ApiModelProperty(value = "Gets or sets the unique identifier")
   public String getGuid() {
     return guid;
   }
@@ -265,10 +262,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the document unique identifier.
+   * Gets or sets the document unique identifier
    * @return documentGuid
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the document unique identifier.")
+  @ApiModelProperty(required = true, value = "Gets or sets the document unique identifier")
   public Long getDocumentGuid() {
     return documentGuid;
   }
@@ -283,10 +280,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the text.
+   * Gets or sets the annotation text
    * @return text
   **/
-  @ApiModelProperty(value = "Gets or sets the text.")
+  @ApiModelProperty(value = "Gets or sets the annotation text")
   public String getText() {
     return text;
   }
@@ -301,10 +298,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the creator unique identifier.
+   * Gets or sets the creator unique identifier
    * @return creatorGuid
   **/
-  @ApiModelProperty(value = "Gets or sets the creator unique identifier.")
+  @ApiModelProperty(value = "Gets or sets the creator unique identifier")
   public String getCreatorGuid() {
     return creatorGuid;
   }
@@ -319,10 +316,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the name of the creator.
+   * Gets or sets the name of the creator
    * @return creatorName
   **/
-  @ApiModelProperty(value = "Gets or sets the name of the creator.")
+  @ApiModelProperty(value = "Gets or sets the name of the creator")
   public String getCreatorName() {
     return creatorName;
   }
@@ -337,10 +334,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the creator email.
+   * Gets or sets the creator&#39;s email
    * @return creatorEmail
   **/
-  @ApiModelProperty(value = "Gets or sets the creator email.")
+  @ApiModelProperty(value = "Gets or sets the creator's email")
   public String getCreatorEmail() {
     return creatorEmail;
   }
@@ -355,10 +352,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the box.
+   * Gets or sets the box where annotation will be placed
    * @return box
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the box.")
+  @ApiModelProperty(required = true, value = "Gets or sets the box where annotation will be placed")
   public Rectangle getBox() {
     return box;
   }
@@ -373,10 +370,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the page number.
+   * Gets or sets the number of page where annotation will be placed
    * @return pageNumber
   **/
-  @ApiModelProperty(value = "Gets or sets the page number.")
+  @ApiModelProperty(value = "Gets or sets the number of page where annotation will be placed")
   public Integer getPageNumber() {
     return pageNumber;
   }
@@ -391,10 +388,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the annotation position.
+   * Gets or sets the annotation position
    * @return annotationPosition
   **/
-  @ApiModelProperty(value = "Gets or sets the annotation position.")
+  @ApiModelProperty(value = "Gets or sets the annotation position")
   public Point getAnnotationPosition() {
     return annotationPosition;
   }
@@ -409,10 +406,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the SVG path.
+   * Gets or sets the annotation SVG path
    * @return svgPath
   **/
-  @ApiModelProperty(value = "Gets or sets the SVG path.")
+  @ApiModelProperty(value = "Gets or sets the annotation SVG path")
   public String getSvgPath() {
     return svgPath;
   }
@@ -427,10 +424,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the type.
+   * Gets or sets the annotation type
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the type.")
+  @ApiModelProperty(required = true, value = "Gets or sets the annotation type")
   public TypeEnum getType() {
     return type;
   }
@@ -445,10 +442,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the access.
+   * Gets or sets the annotation access
    * @return access
   **/
-  @ApiModelProperty(value = "Gets or sets the access.")
+  @ApiModelProperty(value = "Gets or sets the annotation access")
   public AccessEnum getAccess() {
     return access;
   }
@@ -471,10 +468,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the replies.
+   * Gets or sets the array of annotation replies
    * @return replies
   **/
-  @ApiModelProperty(value = "Gets or sets the replies.")
+  @ApiModelProperty(value = "Gets or sets the array of annotation replies")
   public List<AnnotationReplyInfo> getReplies() {
     return replies;
   }
@@ -489,10 +486,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the created on.
+   * Gets or sets the annotation created on date
    * @return createdOn
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the created on.")
+  @ApiModelProperty(required = true, value = "Gets or sets the annotation created on date")
   public OffsetDateTime getCreatedOn() {
     return createdOn;
   }
@@ -507,10 +504,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the color of the font.
+   * Gets or sets the annotation&#39;s font color
    * @return fontColor
   **/
-  @ApiModelProperty(required = true, value = "Gets or sets the color of the font.")
+  @ApiModelProperty(value = "Gets or sets the annotation's font color")
   public Integer getFontColor() {
     return fontColor;
   }
@@ -525,10 +522,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the color of the pen.
+   * Gets or sets the annotation&#39;s pen color
    * @return penColor
   **/
-  @ApiModelProperty(value = "Gets or sets the color of the pen.")
+  @ApiModelProperty(value = "Gets or sets the annotation's pen color")
   public Integer getPenColor() {
     return penColor;
   }
@@ -543,10 +540,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the width of the pen.
+   * Gets or sets the annotation&#39;s pen width
    * @return penWidth
   **/
-  @ApiModelProperty(value = "Gets or sets the width of the pen.")
+  @ApiModelProperty(value = "Gets or sets the annotation's pen width")
   public Integer getPenWidth() {
     return penWidth;
   }
@@ -561,10 +558,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the pen style.
+   * Gets or sets the annotation&#39;s pen style
    * @return penStyle
   **/
-  @ApiModelProperty(value = "Gets or sets the pen style.")
+  @ApiModelProperty(value = "Gets or sets the annotation's pen style")
   public Integer getPenStyle() {
     return penStyle;
   }
@@ -579,10 +576,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the color of the background.
+   * Gets or sets the annotation&#39;s background color 
    * @return backgroundColor
   **/
-  @ApiModelProperty(value = "Gets or sets the color of the background.")
+  @ApiModelProperty(value = "Gets or sets the annotation's background color ")
   public Integer getBackgroundColor() {
     return backgroundColor;
   }
@@ -597,10 +594,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the field text.
+   * Gets or sets the annotation&#39;s field text
    * @return fieldText
   **/
-  @ApiModelProperty(value = "Gets or sets the field text.")
+  @ApiModelProperty(value = "Gets or sets the annotation's field text")
   public String getFieldText() {
     return fieldText;
   }
@@ -615,10 +612,10 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the font family.
+   * Gets or sets the annotation&#39;s font family
    * @return fontFamily
   **/
-  @ApiModelProperty(value = "Gets or sets the font family.")
+  @ApiModelProperty(value = "Gets or sets the annotation's font family")
   public String getFontFamily() {
     return fontFamily;
   }
@@ -633,16 +630,52 @@ public class AnnotationInfo {
   }
 
    /**
-   * Gets or sets the size of the font.
+   * Gets or sets the annotation&#39;s font size 
    * @return fontSize
   **/
-  @ApiModelProperty(value = "Gets or sets the size of the font.")
+  @ApiModelProperty(value = "Gets or sets the annotation's font size ")
   public Double getFontSize() {
     return fontSize;
   }
 
   public void setFontSize(Double fontSize) {
     this.fontSize = fontSize;
+  }
+
+  public AnnotationInfo opacity(Double opacity) {
+    this.opacity = opacity;
+    return this;
+  }
+
+   /**
+   * Gets or sets the annotation&#39;s opacity
+   * @return opacity
+  **/
+  @ApiModelProperty(value = "Gets or sets the annotation's opacity")
+  public Double getOpacity() {
+    return opacity;
+  }
+
+  public void setOpacity(Double opacity) {
+    this.opacity = opacity;
+  }
+
+  public AnnotationInfo angle(Double angle) {
+    this.angle = angle;
+    return this;
+  }
+
+   /**
+   * Gets or sets the watermark annotation&#39;s rotation angle
+   * @return angle
+  **/
+  @ApiModelProperty(value = "Gets or sets the watermark annotation's rotation angle")
+  public Double getAngle() {
+    return angle;
+  }
+
+  public void setAngle(Double angle) {
+    this.angle = angle;
   }
 
 
@@ -676,12 +709,14 @@ public class AnnotationInfo {
         Objects.equals(this.backgroundColor, annotationInfo.backgroundColor) &&
         Objects.equals(this.fieldText, annotationInfo.fieldText) &&
         Objects.equals(this.fontFamily, annotationInfo.fontFamily) &&
-        Objects.equals(this.fontSize, annotationInfo.fontSize);
+        Objects.equals(this.fontSize, annotationInfo.fontSize) &&
+        Objects.equals(this.opacity, annotationInfo.opacity) &&
+        Objects.equals(this.angle, annotationInfo.angle);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(guid, documentGuid, text, creatorGuid, creatorName, creatorEmail, box, pageNumber, annotationPosition, svgPath, type, access, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, fieldText, fontFamily, fontSize);
+    return Objects.hash(guid, documentGuid, text, creatorGuid, creatorName, creatorEmail, box, pageNumber, annotationPosition, svgPath, type, access, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, fieldText, fontFamily, fontSize, opacity, angle);
   }
 
 
@@ -712,6 +747,8 @@ public class AnnotationInfo {
     sb.append("    fieldText: ").append(toIndentedString(fieldText)).append("\n");
     sb.append("    fontFamily: ").append(toIndentedString(fontFamily)).append("\n");
     sb.append("    fontSize: ").append(toIndentedString(fontSize)).append("\n");
+    sb.append("    opacity: ").append(toIndentedString(opacity)).append("\n");
+    sb.append("    angle: ").append(toIndentedString(angle)).append("\n");
     sb.append("}");
     return sb.toString();
   }
