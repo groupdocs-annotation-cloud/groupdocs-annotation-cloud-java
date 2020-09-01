@@ -89,4 +89,4 @@ public class AnnotateApiExample {
 ## Licensing
 All GroupDocs.Annotation Cloud SDKs are licensed under [MIT License](LICENSE).
 
-[Home](https://www.groupdocs.cloud/) | [Product Page](https://products.groupdocs.cloud/annotation/java) | [Docs](https://docs.groupdocs.cloud/annotation/) | [API Reference](https://apireference.groupdocs.cloud/annotation/) | [Examples](https://github.com/groupdocs-annotation-cloud/groupdocs-annotation-cloud-java) | [Blog](https://blog.groupdocs.cloud/category/annotation/) | [Free Support](https://forum.groupdocs.cloud/c/annotation) | [Free Trial](https://purchase.groupdocs.cloud/trial)
+[Home](https://www.groupdocs.cloud/) | [Product Page](https://products.groupdocs.cloud/annotation/java) | [Docs](https://docs.groupdocs.cloud/annotation/) | [Demos](https://products.groupdocs.app/annotation/family) | [API Reference](https://apireference.groupdocs.cloud/annotation/) | [Examples](https://github.com/groupdocs-annotation-cloud/groupdocs-annotation-cloud-java-samples) | [Blog](https://blog.groupdocs.cloud/category/annotation/) | [Free Support](https://forum.groupdocs.cloud/c/annotation) | [Free Trial](https://purchase.groupdocs.cloud/trial)
