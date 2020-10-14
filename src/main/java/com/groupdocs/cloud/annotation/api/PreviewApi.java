@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="PreviewApi.java">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -216,18 +216,18 @@ public class PreviewApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (request.getfilePath() != null)
             localVarQueryParams.addAll(apiClient.parameterToPair("filePath", request.getfilePath()));
-        if (request.getcountPagesToConvert() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("countPagesToConvert", request.getcountPagesToConvert()));
-        if (request.getpageNumber() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("pageNumber", request.getpageNumber()));
         if (request.getpageNumbersToConvert() != null)
             localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "pageNumbersToConvert", request.getpageNumbersToConvert()));
+        if (request.getformat() != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("format", request.getformat()));
+        if (request.getwidth() != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("width", request.getwidth()));
+        if (request.getheight() != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("height", request.getheight()));
         if (request.getwithoutAnnotations() != null)
             localVarQueryParams.addAll(apiClient.parameterToPair("withoutAnnotations", request.getwithoutAnnotations()));
-        if (request.getenableCaching() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("enableCaching", request.getenableCaching()));
-        if (request.getcacheStoragePath() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("cacheStoragePath", request.getcacheStoragePath()));
+        if (request.getrenderComments() != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("renderComments", request.getrenderComments()));
         if (request.getpassword() != null)
             localVarQueryParams.addAll(apiClient.parameterToPair("password", request.getpassword()));
 

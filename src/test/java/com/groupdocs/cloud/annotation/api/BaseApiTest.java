@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2019 Aspose Pty Ltd
+ * Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -62,9 +62,10 @@ public class BaseApiTest
 
         Configuration configuration = new Configuration(Config.AppSID, Config.AppKey);
         configuration.setApiBaseUrl(Config.ApiBaseUrl);
+        
         int timeOut = 60 * 1000;
         infoApi = new InfoApi(configuration);
-        infoApi.getApiClient().setReadTimeout(timeOut);
+        infoApi.getApiClient().setReadTimeout(timeOut);        
         annotateApi = new AnnotateApi(configuration);
         annotateApi.getApiClient().setReadTimeout(timeOut);
         previewApi = new PreviewApi(configuration);

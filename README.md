@@ -1,4 +1,5 @@
 # GroupDocs.Annotation Cloud SDK for Java
+
 This repository contains GroupDocs.Annotation Cloud SDK for Java source code. This SDK allows you to work with GroupDocs.Annotation Cloud REST APIs in your Java applications.
 
 ## Requirements
@@ -37,7 +38,7 @@ Add following repository and dependency to your project's POM
 <dependency>
     <groupId>com.groupdocs</groupId>
     <artifactId>groupdocs-annotation-cloud</artifactId>
-    <version>19.5</version>
+    <version>20.10</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -46,11 +47,13 @@ Add following repository and dependency to your project's POM
 
 At first generate the JAR by executing:
 
-    mvn package
+```shell
+mvn package
+```
 
 Then manually install the following JARs:
 
-* target/groupdocs-annotation-cloud-19.5.jar
+* target/groupdocs-annotation-cloud-20.10.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -87,6 +90,17 @@ public class AnnotateApiExample {
 ```
 
 ## Licensing
+
 All GroupDocs.Annotation Cloud SDKs are licensed under [MIT License](LICENSE).
 
-[Home](https://www.groupdocs.cloud/) | [Product Page](https://products.groupdocs.cloud/annotation/java) | [Docs](https://docs.groupdocs.cloud/annotation/) | [Demos](https://products.groupdocs.app/annotation/family) | [API Reference](https://apireference.groupdocs.cloud/annotation/) | [Examples](https://github.com/groupdocs-annotation-cloud/groupdocs-annotation-cloud-java-samples) | [Blog](https://blog.groupdocs.cloud/category/annotation/) | [Free Support](https://forum.groupdocs.cloud/c/annotation) | [Free Trial](https://purchase.groupdocs.cloud/trial)
+## Resources
+
++[**Website**](https://www.groupdocs.cloud)
++[**Product Home**](https://products.groupdocs.cloud/annotation/cloud)
++[**Documentation**](https://docs.groupdocs.cloud/annotation/)
++[**Free Support Forum**](https://forum.groupdocs.cloud/c/annotation)
++[**Blog**](https://blog.groupdocs.cloud/category/groupdocs-annotation-cloud-product-family)
+
+## Contact Us
+
+Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.groupdocs.cloud/c/annotation).

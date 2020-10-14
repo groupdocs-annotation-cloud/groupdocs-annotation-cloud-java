@@ -43,11 +43,11 @@ import org.threeten.bp.OffsetDateTime;
  */
 @ApiModel(description = "Describes annotation reply properties")
 public class AnnotationReplyInfo {
-  @SerializedName("guid")
-  private String guid = null;
+  @SerializedName("id")
+  private Integer id = null;
 
-  @SerializedName("userGuid")
-  private String userGuid = null;
+  @SerializedName("userId")
+  private Integer userId = null;
 
   @SerializedName("userName")
   private String userName = null;
@@ -55,49 +55,49 @@ public class AnnotationReplyInfo {
   @SerializedName("userEmail")
   private String userEmail = null;
 
-  @SerializedName("message")
-  private String message = null;
+  @SerializedName("comment")
+  private String comment = null;
 
   @SerializedName("repliedOn")
   private OffsetDateTime repliedOn = null;
 
-  @SerializedName("parentReplyGuid")
-  private String parentReplyGuid = null;
+  @SerializedName("parentReplyId")
+  private Integer parentReplyId = null;
 
-  public AnnotationReplyInfo guid(String guid) {
-    this.guid = guid;
+  public AnnotationReplyInfo id(Integer id) {
+    this.id = id;
     return this;
   }
 
    /**
    * Gets or sets the unique identifier
-   * @return guid
+   * @return id
   **/
-  @ApiModelProperty(value = "Gets or sets the unique identifier")
-  public String getGuid() {
-    return guid;
+  @ApiModelProperty(required = true, value = "Gets or sets the unique identifier")
+  public Integer getId() {
+    return id;
   }
 
-  public void setGuid(String guid) {
-    this.guid = guid;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
-  public AnnotationReplyInfo userGuid(String userGuid) {
-    this.userGuid = userGuid;
+  public AnnotationReplyInfo userId(Integer userId) {
+    this.userId = userId;
     return this;
   }
 
    /**
    * Gets or sets the user&#39;s unique identifier
-   * @return userGuid
+   * @return userId
   **/
-  @ApiModelProperty(value = "Gets or sets the user's unique identifier")
-  public String getUserGuid() {
-    return userGuid;
+  @ApiModelProperty(required = true, value = "Gets or sets the user's unique identifier")
+  public Integer getUserId() {
+    return userId;
   }
 
-  public void setUserGuid(String userGuid) {
-    this.userGuid = userGuid;
+  public void setUserId(Integer userId) {
+    this.userId = userId;
   }
 
   public AnnotationReplyInfo userName(String userName) {
@@ -136,22 +136,22 @@ public class AnnotationReplyInfo {
     this.userEmail = userEmail;
   }
 
-  public AnnotationReplyInfo message(String message) {
-    this.message = message;
+  public AnnotationReplyInfo comment(String comment) {
+    this.comment = comment;
     return this;
   }
 
    /**
    * Gets or sets the message
-   * @return message
+   * @return comment
   **/
   @ApiModelProperty(value = "Gets or sets the message")
-  public String getMessage() {
-    return message;
+  public String getComment() {
+    return comment;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
   public AnnotationReplyInfo repliedOn(OffsetDateTime repliedOn) {
@@ -172,22 +172,22 @@ public class AnnotationReplyInfo {
     this.repliedOn = repliedOn;
   }
 
-  public AnnotationReplyInfo parentReplyGuid(String parentReplyGuid) {
-    this.parentReplyGuid = parentReplyGuid;
+  public AnnotationReplyInfo parentReplyId(Integer parentReplyId) {
+    this.parentReplyId = parentReplyId;
     return this;
   }
 
    /**
    * Gets or sets the parent reply unique identifier
-   * @return parentReplyGuid
+   * @return parentReplyId
   **/
-  @ApiModelProperty(value = "Gets or sets the parent reply unique identifier")
-  public String getParentReplyGuid() {
-    return parentReplyGuid;
+  @ApiModelProperty(required = true, value = "Gets or sets the parent reply unique identifier")
+  public Integer getParentReplyId() {
+    return parentReplyId;
   }
 
-  public void setParentReplyGuid(String parentReplyGuid) {
-    this.parentReplyGuid = parentReplyGuid;
+  public void setParentReplyId(Integer parentReplyId) {
+    this.parentReplyId = parentReplyId;
   }
 
 
@@ -200,18 +200,18 @@ public class AnnotationReplyInfo {
       return false;
     }
     AnnotationReplyInfo annotationReplyInfo = (AnnotationReplyInfo) o;
-    return Objects.equals(this.guid, annotationReplyInfo.guid) &&
-        Objects.equals(this.userGuid, annotationReplyInfo.userGuid) &&
+    return Objects.equals(this.id, annotationReplyInfo.id) &&
+        Objects.equals(this.userId, annotationReplyInfo.userId) &&
         Objects.equals(this.userName, annotationReplyInfo.userName) &&
         Objects.equals(this.userEmail, annotationReplyInfo.userEmail) &&
-        Objects.equals(this.message, annotationReplyInfo.message) &&
+        Objects.equals(this.comment, annotationReplyInfo.comment) &&
         Objects.equals(this.repliedOn, annotationReplyInfo.repliedOn) &&
-        Objects.equals(this.parentReplyGuid, annotationReplyInfo.parentReplyGuid);
+        Objects.equals(this.parentReplyId, annotationReplyInfo.parentReplyId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(guid, userGuid, userName, userEmail, message, repliedOn, parentReplyGuid);
+    return Objects.hash(id, userId, userName, userEmail, comment, repliedOn, parentReplyId);
   }
 
 
@@ -220,13 +220,13 @@ public class AnnotationReplyInfo {
     StringBuilder sb = new StringBuilder();
     sb.append("class AnnotationReplyInfo {\n");
     
-    sb.append("    guid: ").append(toIndentedString(guid)).append("\n");
-    sb.append("    userGuid: ").append(toIndentedString(userGuid)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
     sb.append("    userEmail: ").append(toIndentedString(userEmail)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    repliedOn: ").append(toIndentedString(repliedOn)).append("\n");
-    sb.append("    parentReplyGuid: ").append(toIndentedString(parentReplyGuid)).append("\n");
+    sb.append("    parentReplyId: ").append(toIndentedString(parentReplyId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

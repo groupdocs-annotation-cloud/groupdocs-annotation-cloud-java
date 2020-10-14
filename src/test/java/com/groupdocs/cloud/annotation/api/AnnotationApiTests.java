@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2019 Aspose Pty Ltd
+ * Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,6 +28,7 @@ package com.groupdocs.cloud.annotation.api;
 
 import com.groupdocs.cloud.annotation.client.ApiException;
 import com.groupdocs.cloud.annotation.model.*;
+import com.groupdocs.cloud.annotation.model.AnnotationInfo.PenStyleEnum;
 import com.groupdocs.cloud.annotation.model.AnnotationInfo.TypeEnum;
 import com.groupdocs.cloud.annotation.model.requests.DeleteAnnotationsRequest;
 import com.groupdocs.cloud.annotation.model.requests.GetExportRequest;
@@ -52,7 +53,17 @@ public class AnnotationApiTests extends BaseApiTest
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx", "diagram\\one-page.vsd", "email\\one-page.emlx", "images\\one-page.png", "pdf\\one-page.pdf", "slides\\one-page.pptx", "words\\one-page.docx", "cells\\one-page-password.xlsx", "pdf\\one-page-password.pdf", "slides\\one-page-password.pptx", "words\\one-page-password.docx"
+                "cells\\one-page.xlsx",
+                "diagram\\one-page.vsd",
+                "email\\one-page.emlx",
+                "images\\one-page.png",
+                 "pdf\\one-page.pdf",
+                "slides\\one-page.pptx",
+                "words\\one-page.docx",
+                "cells\\one-page-password.xlsx",
+                "pdf\\one-page-password.pdf",
+                "slides\\one-page-password.pptx",
+                "words\\one-page-password.docx"
             })
     public void test1PostAnnotations(String filePath) throws ApiException
     {
@@ -63,7 +74,11 @@ public class AnnotationApiTests extends BaseApiTest
     @Test
     @Parameters(
             {
-                "cells\\ten-pages.xlsx", "diagram\\ten-pages.vsd", "pdf\\ten-pages.pdf", "slides\\ten-pages.pptx", "words\\ten-pages.docx"
+                "cells\\ten-pages.xlsx",
+                "diagram\\ten-pages.vsd",
+                "pdf\\ten-pages.pdf",
+                "slides\\ten-pages.pptx",
+                "words\\ten-pages.docx"
             })
     public void test1PostAnnotationsManyPages(String filePath) throws ApiException
     {
@@ -74,7 +89,22 @@ public class AnnotationApiTests extends BaseApiTest
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx", "diagram\\one-page.vsd", "email\\one-page.emlx", "images\\one-page.png", "pdf\\one-page.pdf", "slides\\one-page.pptx", "words\\one-page.docx", "cells\\ten-pages.xlsx", "diagram\\ten-pages.vsd", "pdf\\ten-pages.pdf", "slides\\ten-pages.pptx", "words\\ten-pages.docx", "cells\\one-page-password.xlsx", "pdf\\one-page-password.pdf", "slides\\one-page-password.pptx", "words\\one-page-password.docx"
+                "cells\\one-page.xlsx",
+                "diagram\\one-page.vsd",
+                "email\\one-page.emlx",
+                "images\\one-page.png",
+                "pdf\\one-page.pdf",
+                "slides\\one-page.pptx",
+                "words\\one-page.docx",
+                "cells\\ten-pages.xlsx",
+                "diagram\\ten-pages.vsd",
+                "pdf\\ten-pages.pdf",
+                "slides\\ten-pages.pptx",
+                "words\\ten-pages.docx",
+                "cells\\one-page-password.xlsx",
+                "pdf\\one-page-password.pdf",
+                "slides\\one-page-password.pptx",
+                "words\\one-page-password.docx"
             })
     public void test2GetImport(String filePath) throws ApiException
     {
@@ -86,7 +116,19 @@ public class AnnotationApiTests extends BaseApiTest
     @Test
     @Parameters(
             {
-                "diagram\\one-page.vsd,,false,-1,-1,", "email\\one-page.emlx,,false,-1,-1,", "images\\one-page.png,,false,-1,-1,", "pdf\\one-page.pdf,,false,-1,-1,", "slides\\one-page.pptx,,false,-1,-1,", "words\\one-page.docx,,false,-1,-1,", "diagram\\ten-pages.vsd,Area,false,2,5,", "pdf\\ten-pages.pdf,Area,false,2,5,", "slides\\ten-pages.pptx,Area,false,2,5,", "words\\ten-pages.docx,Area,false,2,5,", "pdf\\one-page-password.pdf,,false,-1,-1,password", "slides\\one-page-password.pptx,,false,-1,-1,password", "words\\one-page-password.docx,,false,-1,-1,password"
+                "diagram\\one-page.vsd,,false,0,0,",
+                "email\\one-page.emlx,,false,0,0,",
+                "images\\one-page.png,,false,0,0,",
+                "pdf\\one-page.pdf,,false,0,0,",
+                "slides\\one-page.pptx,,false,0,0,",
+                "words\\one-page.docx,,false,0,0,",
+                "diagram\\ten-pages.vsd,Area,false,2,5,",
+                "pdf\\ten-pages.pdf,Area,false,2,5,",
+                "slides\\ten-pages.pptx,Area,false,2,5,",
+                "words\\ten-pages.docx,Area,false,2,5,",
+                "pdf\\one-page-password.pdf,,false,0,0,password",
+                "slides\\one-page-password.pptx,,false,0,0,password",
+                "words\\one-page-password.docx,,false,0,0,password"
             })
     public void test3GetExport(String filePath, String annotationTypes, Boolean annotatedPages, Integer firstPage, Integer lastPage, String password) throws ApiException
     {
@@ -98,7 +140,22 @@ public class AnnotationApiTests extends BaseApiTest
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx", "diagram\\one-page.vsd", "email\\one-page.emlx", "images\\one-page.png", "pdf\\one-page.pdf", "slides\\one-page.pptx", "words\\one-page.docx", "cells\\ten-pages.xlsx", "diagram\\ten-pages.vsd", "pdf\\ten-pages.pdf", "slides\\ten-pages.pptx", "words\\ten-pages.docx", "cells\\one-page-password.xlsx", "pdf\\one-page-password.pdf", "slides\\one-page-password.pptx", "words\\one-page-password.docx"
+                "cells\\one-page.xlsx",
+                "diagram\\one-page.vsd",
+                "email\\one-page.emlx",
+                "images\\one-page.png",
+                "pdf\\one-page.pdf",
+                "slides\\one-page.pptx",
+                "words\\one-page.docx",
+                "cells\\ten-pages.xlsx",
+                "diagram\\ten-pages.vsd",
+                "pdf\\ten-pages.pdf",
+                "slides\\ten-pages.pptx",
+                "words\\ten-pages.docx",
+                "cells\\one-page-password.xlsx",
+                "pdf\\one-page-password.pdf",
+                "slides\\one-page-password.pptx",
+                "words\\one-page-password.docx"
             })
     public void test4DeleteAnnotations(String filePath) throws ApiException
     {
@@ -129,9 +186,9 @@ public class AnnotationApiTests extends BaseApiTest
         annotations[0] = new AnnotationInfo();
         annotations[0].setAnnotationPosition(GetPoint());
         annotations[0].setBox(GetRectangle());
-        annotations[0].setPageNumber(0);
+        annotations[0].setPageNumber(1);
         annotations[0].setPenColor(1201033);
-        annotations[0].setPenStyle(0);
+        annotations[0].setPenStyle(PenStyleEnum.SOLID);
         annotations[0].setPenWidth(1);
         annotations[0].setType(TypeEnum.AREA);
         annotations[0].setCreatorName("Anonym A.");
@@ -146,7 +203,7 @@ public class AnnotationApiTests extends BaseApiTest
         annotations[0].setBox(GetRectangle());
         annotations[0].setPageNumber(0);
         annotations[0].setPenColor(1201033);
-        annotations[0].setPenStyle(0);
+        annotations[0].setPenStyle(PenStyleEnum.SOLID);
         annotations[0].setPenWidth(1);
         annotations[0].setType(TypeEnum.DISTANCE);
         annotations[0].setCreatorName("Anonym A.");
@@ -155,7 +212,7 @@ public class AnnotationApiTests extends BaseApiTest
         annotations[1].setBox(GetRectangle());
         annotations[1].setPageNumber(2);
         annotations[1].setPenColor(1201033);
-        annotations[1].setPenStyle(0);
+        annotations[1].setPenStyle(PenStyleEnum.SOLID);
         annotations[1].setPenWidth(1);
         annotations[1].setType(TypeEnum.AREA);
         annotations[1].setCreatorName("Anonym A.");
@@ -170,7 +227,7 @@ public class AnnotationApiTests extends BaseApiTest
         annotations[3].setBox(GetRectangle());
         annotations[3].setPageNumber(5);
         annotations[3].setPenColor(1201033);
-        annotations[3].setPenStyle(0);
+        annotations[3].setPenStyle(PenStyleEnum.SOLID);
         annotations[3].setPenWidth(1);
         annotations[3].setType(TypeEnum.ARROW);
         annotations[3].setCreatorName("Anonym A.");

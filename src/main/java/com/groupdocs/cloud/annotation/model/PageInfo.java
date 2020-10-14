@@ -33,12 +33,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.groupdocs.cloud.annotation.model.RowInfo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Describes page information
@@ -53,12 +50,6 @@ public class PageInfo {
 
   @SerializedName("height")
   private Integer height = null;
-
-  @SerializedName("isVisible")
-  private Boolean isVisible = null;
-
-  @SerializedName("rows")
-  private List<RowInfo> rows = null;
 
   public PageInfo number(Integer number) {
     this.number = number;
@@ -114,50 +105,6 @@ public class PageInfo {
     this.height = height;
   }
 
-  public PageInfo isVisible(Boolean isVisible) {
-    this.isVisible = isVisible;
-    return this;
-  }
-
-   /**
-   * Indicates whether page is visible or not
-   * @return isVisible
-  **/
-  @ApiModelProperty(required = true, value = "Indicates whether page is visible or not")
-  public Boolean getIsVisible() {
-    return isVisible;
-  }
-
-  public void setIsVisible(Boolean isVisible) {
-    this.isVisible = isVisible;
-  }
-
-  public PageInfo rows(List<RowInfo> rows) {
-    this.rows = rows;
-    return this;
-  }
-
-  public PageInfo addRowsItem(RowInfo rowsItem) {
-    if (this.rows == null) {
-      this.rows = new ArrayList<RowInfo>();
-    }
-    this.rows.add(rowsItem);
-    return this;
-  }
-
-   /**
-   * Gets or sets the list of text rows
-   * @return rows
-  **/
-  @ApiModelProperty(value = "Gets or sets the list of text rows")
-  public List<RowInfo> getRows() {
-    return rows;
-  }
-
-  public void setRows(List<RowInfo> rows) {
-    this.rows = rows;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -170,14 +117,12 @@ public class PageInfo {
     PageInfo pageInfo = (PageInfo) o;
     return Objects.equals(this.number, pageInfo.number) &&
         Objects.equals(this.width, pageInfo.width) &&
-        Objects.equals(this.height, pageInfo.height) &&
-        Objects.equals(this.isVisible, pageInfo.isVisible) &&
-        Objects.equals(this.rows, pageInfo.rows);
+        Objects.equals(this.height, pageInfo.height);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(number, width, height, isVisible, rows);
+    return Objects.hash(number, width, height);
   }
 
 
@@ -189,8 +134,6 @@ public class PageInfo {
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
-    sb.append("    isVisible: ").append(toIndentedString(isVisible)).append("\n");
-    sb.append("    rows: ").append(toIndentedString(rows)).append("\n");
     sb.append("}");
     return sb.toString();
   }

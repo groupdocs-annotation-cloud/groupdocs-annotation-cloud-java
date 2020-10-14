@@ -40,9 +40,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * The document page image representatoin
+ * The document page image representation
  */
-@ApiModel(description = "The document page image representatoin")
+@ApiModel(description = "The document page image representation")
 public class PageImage extends LinkElement {
   @SerializedName("number")
   private Integer number = null;

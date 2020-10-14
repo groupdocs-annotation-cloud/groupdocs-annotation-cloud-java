@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="GetPagesRequest.java">
- *   Copyright (c) 2003-2019 Aspose Pty Ltd
+ *   Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -55,46 +55,46 @@ public class GetPagesRequest {
     /**
     * Initializes a new instance of the GetPagesRequest class.    
     * @param filePath Document path in storage
-    * @param countPagesToConvert The count pages to convert
-    * @param pageNumber The start page number
     * @param pageNumbersToConvert The list of page numbers to convert
+    * @param format Preview format: \"PNG\" (default), \"JPEG\", or \"BMP\"
+    * @param width Preview image width
+    * @param height Preview image height
     * @param withoutAnnotations If true returns specific pages without annotations
-    * @param enableCaching Indicates whether to use previously cached document or not
-    * @param cacheStoragePath The cache storage path
+    * @param renderComments Render comments (false by default)
     * @param password Source document opening password
     */
-    public GetPagesRequest(String filePath, Integer countPagesToConvert, Integer pageNumber, List<Integer> pageNumbersToConvert, Boolean withoutAnnotations, Boolean enableCaching, String cacheStoragePath, String password)
+    public GetPagesRequest(String filePath, List<Integer> pageNumbersToConvert, String format, Integer width, Integer height, Boolean withoutAnnotations, Boolean renderComments, String password)
     {
         this.filePath = filePath;
-        this.countPagesToConvert = countPagesToConvert;
-        this.pageNumber = pageNumber;
         this.pageNumbersToConvert = pageNumbersToConvert;
+        this.format = format;
+        this.width = width;
+        this.height = height;
         this.withoutAnnotations = withoutAnnotations;
-        this.enableCaching = enableCaching;
-        this.cacheStoragePath = cacheStoragePath;
+        this.renderComments = renderComments;
         this.password = password;
     }
 
   @SerializedName("filePath")
   private String filePath = null;
 
-  @SerializedName("countPagesToConvert")
-  private Integer countPagesToConvert = null;
-
-  @SerializedName("pageNumber")
-  private Integer pageNumber = null;
-
   @SerializedName("pageNumbersToConvert")
   private List<Integer> pageNumbersToConvert = null;
+
+  @SerializedName("format")
+  private String format = null;
+
+  @SerializedName("width")
+  private Integer width = null;
+
+  @SerializedName("height")
+  private Integer height = null;
 
   @SerializedName("withoutAnnotations")
   private Boolean withoutAnnotations = null;
 
-  @SerializedName("enableCaching")
-  private Boolean enableCaching = null;
-
-  @SerializedName("cacheStoragePath")
-  private String cacheStoragePath = null;
+  @SerializedName("renderComments")
+  private Boolean renderComments = null;
 
   @SerializedName("password")
   private String password = null;
@@ -113,32 +113,6 @@ public class GetPagesRequest {
   }
 
   /**
-   * The count pages to convert
-   * @return The count pages to convert
-  **/
-  @ApiModelProperty(example = "0", value = "The count pages to convert")
-  public Integer getcountPagesToConvert() {
-    return countPagesToConvert;
-  }
-
-  public void setcountPagesToConvert(Integer countPagesToConvert) {
-    this.countPagesToConvert = countPagesToConvert;
-  }
-
-  /**
-   * The start page number
-   * @return The start page number
-  **/
-  @ApiModelProperty(example = "0", value = "The start page number")
-  public Integer getpageNumber() {
-    return pageNumber;
-  }
-
-  public void setpageNumber(Integer pageNumber) {
-    this.pageNumber = pageNumber;
-  }
-
-  /**
    * The list of page numbers to convert
    * @return The list of page numbers to convert
   **/
@@ -149,6 +123,45 @@ public class GetPagesRequest {
 
   public void setpageNumbersToConvert(List<Integer> pageNumbersToConvert) {
     this.pageNumbersToConvert = pageNumbersToConvert;
+  }
+
+  /**
+   * Preview format: \"PNG\" (default), \"JPEG\", or \"BMP\"
+   * @return Preview format: \"PNG\" (default), \"JPEG\", or \"BMP\"
+  **/
+  @ApiModelProperty(example = "format_example", value = "Preview format: \"PNG\" (default), \"JPEG\", or \"BMP\"")
+  public String getformat() {
+    return format;
+  }
+
+  public void setformat(String format) {
+    this.format = format;
+  }
+
+  /**
+   * Preview image width
+   * @return Preview image width
+  **/
+  @ApiModelProperty(example = "0", value = "Preview image width")
+  public Integer getwidth() {
+    return width;
+  }
+
+  public void setwidth(Integer width) {
+    this.width = width;
+  }
+
+  /**
+   * Preview image height
+   * @return Preview image height
+  **/
+  @ApiModelProperty(example = "0", value = "Preview image height")
+  public Integer getheight() {
+    return height;
+  }
+
+  public void setheight(Integer height) {
+    this.height = height;
   }
 
   /**
@@ -165,29 +178,16 @@ public class GetPagesRequest {
   }
 
   /**
-   * Indicates whether to use previously cached document or not
-   * @return Indicates whether to use previously cached document or not
+   * Render comments (false by default)
+   * @return Render comments (false by default)
   **/
-  @ApiModelProperty(example = "false", value = "Indicates whether to use previously cached document or not")
-  public Boolean getenableCaching() {
-    return enableCaching;
+  @ApiModelProperty(example = "false", value = "Render comments (false by default)")
+  public Boolean getrenderComments() {
+    return renderComments;
   }
 
-  public void setenableCaching(Boolean enableCaching) {
-    this.enableCaching = enableCaching;
-  }
-
-  /**
-   * The cache storage path
-   * @return The cache storage path
-  **/
-  @ApiModelProperty(example = "cacheStoragePath_example", value = "The cache storage path")
-  public String getcacheStoragePath() {
-    return cacheStoragePath;
-  }
-
-  public void setcacheStoragePath(String cacheStoragePath) {
-    this.cacheStoragePath = cacheStoragePath;
+  public void setrenderComments(Boolean renderComments) {
+    this.renderComments = renderComments;
   }
 
   /**
@@ -215,18 +215,18 @@ public class GetPagesRequest {
     
     GetPagesRequest request = (GetPagesRequest) o;
     return Objects.equals(this.filePath, request.filePath) &&
-        Objects.equals(this.countPagesToConvert, request.countPagesToConvert) &&
-        Objects.equals(this.pageNumber, request.pageNumber) &&
         Objects.equals(this.pageNumbersToConvert, request.pageNumbersToConvert) &&
+        Objects.equals(this.format, request.format) &&
+        Objects.equals(this.width, request.width) &&
+        Objects.equals(this.height, request.height) &&
         Objects.equals(this.withoutAnnotations, request.withoutAnnotations) &&
-        Objects.equals(this.enableCaching, request.enableCaching) &&
-        Objects.equals(this.cacheStoragePath, request.cacheStoragePath) &&
+        Objects.equals(this.renderComments, request.renderComments) &&
         Objects.equals(this.password, request.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePath, countPagesToConvert, pageNumber, pageNumbersToConvert, withoutAnnotations, enableCaching, cacheStoragePath, password);
+    return Objects.hash(filePath, pageNumbersToConvert, format, width, height, withoutAnnotations, renderComments, password);
   }
 
   @Override
@@ -234,12 +234,12 @@ public class GetPagesRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetPages {\n");
     sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
-    sb.append("    countPagesToConvert: ").append(toIndentedString(countPagesToConvert)).append("\n");
-    sb.append("    pageNumber: ").append(toIndentedString(pageNumber)).append("\n");
     sb.append("    pageNumbersToConvert: ").append(toIndentedString(pageNumbersToConvert)).append("\n");
+    sb.append("    format: ").append(toIndentedString(format)).append("\n");
+    sb.append("    width: ").append(toIndentedString(width)).append("\n");
+    sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    withoutAnnotations: ").append(toIndentedString(withoutAnnotations)).append("\n");
-    sb.append("    enableCaching: ").append(toIndentedString(enableCaching)).append("\n");
-    sb.append("    cacheStoragePath: ").append(toIndentedString(cacheStoragePath)).append("\n");
+    sb.append("    renderComments: ").append(toIndentedString(renderComments)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();

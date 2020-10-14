@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2019 Aspose Pty Ltd
+ * Copyright (c) 2003-2020 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,8 +41,7 @@ import org.junit.runners.Suite.SuiteClasses;
             FileApiTests.class,
             AnnotationApiTests.class,
             AnnotationInfoApiTests.class,
-            AnnotationPagesApiTests.class,
-            AnnotationPdfFileTests.class
+            AnnotationPagesApiTests.class
         })
 
 public class TestSetup

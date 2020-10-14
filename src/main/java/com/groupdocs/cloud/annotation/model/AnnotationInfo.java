@@ -48,17 +48,125 @@ import org.threeten.bp.OffsetDateTime;
  */
 @ApiModel(description = "Describes annotation properties")
 public class AnnotationInfo {
-  @SerializedName("guid")
-  private String guid = null;
-
-  @SerializedName("documentGuid")
-  private Long documentGuid = null;
+  @SerializedName("id")
+  private Integer id = null;
 
   @SerializedName("text")
   private String text = null;
 
-  @SerializedName("creatorGuid")
-  private String creatorGuid = null;
+  @SerializedName("textToReplace")
+  private String textToReplace = null;
+
+  /**
+   * Gets or sets text horizontal alignment
+   */
+  @JsonAdapter(HorizontalAlignmentEnum.Adapter.class)
+  public enum HorizontalAlignmentEnum {
+    NONE("None"),
+    
+    LEFT("Left"),
+    
+    CENTER("Center"),
+    
+    RIGHT("Right");
+
+    private String value;
+
+    HorizontalAlignmentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static HorizontalAlignmentEnum fromValue(String text) {
+      for (HorizontalAlignmentEnum b : HorizontalAlignmentEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<HorizontalAlignmentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final HorizontalAlignmentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public HorizontalAlignmentEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return HorizontalAlignmentEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("horizontalAlignment")
+  private HorizontalAlignmentEnum horizontalAlignment = null;
+
+  /**
+   * Gets or sets text vertical alignment
+   */
+  @JsonAdapter(VerticalAlignmentEnum.Adapter.class)
+  public enum VerticalAlignmentEnum {
+    NONE("None"),
+    
+    TOP("Top"),
+    
+    CENTER("Center"),
+    
+    BOTTOM("Bottom");
+
+    private String value;
+
+    VerticalAlignmentEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static VerticalAlignmentEnum fromValue(String text) {
+      for (VerticalAlignmentEnum b : VerticalAlignmentEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<VerticalAlignmentEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final VerticalAlignmentEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public VerticalAlignmentEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return VerticalAlignmentEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("verticalAlignment")
+  private VerticalAlignmentEnum verticalAlignment = null;
+
+  @SerializedName("creatorId")
+  private Integer creatorId = null;
 
   @SerializedName("creatorName")
   private String creatorName = null;
@@ -68,6 +176,9 @@ public class AnnotationInfo {
 
   @SerializedName("box")
   private Rectangle box = null;
+
+  @SerializedName("points")
+  private List<Point> points = null;
 
   @SerializedName("pageNumber")
   private Integer pageNumber = null;
@@ -83,33 +194,39 @@ public class AnnotationInfo {
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
-    TEXT("Text"),
+    NONE("None"),
     
     AREA("Area"),
     
-    POINT("Point"),
-    
-    TEXTSTRIKEOUT("TextStrikeout"),
-    
-    POLYLINE("Polyline"),
-    
-    TEXTFIELD("TextField"),
-    
-    WATERMARK("Watermark"),
-    
-    TEXTREPLACEMENT("TextReplacement"),
-    
     ARROW("Arrow"),
-    
-    TEXTREDACTION("TextRedaction"),
-    
-    RESOURCESREDACTION("ResourcesRedaction"),
-    
-    TEXTUNDERLINE("TextUnderline"),
     
     DISTANCE("Distance"),
     
-    ELLIPSE("Ellipse");
+    ELLIPSE("Ellipse"),
+    
+    LINK("Link"),
+    
+    POINT("Point"),
+    
+    POLYLINE("Polyline"),
+    
+    RESOURCESREDACTION("ResourcesRedaction"),
+    
+    TEXTFIELD("TextField"),
+    
+    TEXTHIGHLIGHT("TextHighlight"),
+    
+    TEXTREDACTION("TextRedaction"),
+    
+    TEXTREPLACEMENT("TextReplacement"),
+    
+    TEXTSTRIKEOUT("TextStrikeout"),
+    
+    TEXTUNDERLINE("TextUnderline"),
+    
+    WATERMARK("Watermark"),
+    
+    IMAGE("Image");
 
     private String value;
 
@@ -152,56 +269,6 @@ public class AnnotationInfo {
   @SerializedName("type")
   private TypeEnum type = null;
 
-  /**
-   * Gets or sets the annotation access
-   */
-  @JsonAdapter(AccessEnum.Adapter.class)
-  public enum AccessEnum {
-    PUBLIC("Public"),
-    
-    PRIVATE("Private");
-
-    private String value;
-
-    AccessEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static AccessEnum fromValue(String text) {
-      for (AccessEnum b : AccessEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<AccessEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final AccessEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public AccessEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
-        return AccessEnum.fromValue(String.valueOf(value));
-      }
-    }
-  }
-
-  @SerializedName("access")
-  private AccessEnum access = null;
-
   @SerializedName("replies")
   private List<AnnotationReplyInfo> replies = null;
 
@@ -217,14 +284,66 @@ public class AnnotationInfo {
   @SerializedName("penWidth")
   private Integer penWidth = null;
 
+  /**
+   * Gets or sets the annotation&#39;s pen style
+   */
+  @JsonAdapter(PenStyleEnum.Adapter.class)
+  public enum PenStyleEnum {
+    SOLID("Solid"),
+    
+    DASH("Dash"),
+    
+    DASHDOT("DashDot"),
+    
+    DOT("Dot"),
+    
+    LONGDASH("LongDash"),
+    
+    DASHDOTDOT("DashDotDot");
+
+    private String value;
+
+    PenStyleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PenStyleEnum fromValue(String text) {
+      for (PenStyleEnum b : PenStyleEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PenStyleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PenStyleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PenStyleEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PenStyleEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
   @SerializedName("penStyle")
-  private Integer penStyle = null;
+  private PenStyleEnum penStyle = null;
 
   @SerializedName("backgroundColor")
   private Integer backgroundColor = null;
-
-  @SerializedName("fieldText")
-  private String fieldText = null;
 
   @SerializedName("fontFamily")
   private String fontFamily = null;
@@ -238,40 +357,28 @@ public class AnnotationInfo {
   @SerializedName("angle")
   private Double angle = null;
 
-  public AnnotationInfo guid(String guid) {
-    this.guid = guid;
+  @SerializedName("url")
+  private String url = null;
+
+  @SerializedName("imagePath")
+  private String imagePath = null;
+
+  public AnnotationInfo id(Integer id) {
+    this.id = id;
     return this;
   }
 
    /**
    * Gets or sets the unique identifier
-   * @return guid
+   * @return id
   **/
-  @ApiModelProperty(value = "Gets or sets the unique identifier")
-  public String getGuid() {
-    return guid;
+  @ApiModelProperty(required = true, value = "Gets or sets the unique identifier")
+  public Integer getId() {
+    return id;
   }
 
-  public void setGuid(String guid) {
-    this.guid = guid;
-  }
-
-  public AnnotationInfo documentGuid(Long documentGuid) {
-    this.documentGuid = documentGuid;
-    return this;
-  }
-
-   /**
-   * Gets or sets the document unique identifier
-   * @return documentGuid
-  **/
-  @ApiModelProperty(required = true, value = "Gets or sets the document unique identifier")
-  public Long getDocumentGuid() {
-    return documentGuid;
-  }
-
-  public void setDocumentGuid(Long documentGuid) {
-    this.documentGuid = documentGuid;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public AnnotationInfo text(String text) {
@@ -292,22 +399,76 @@ public class AnnotationInfo {
     this.text = text;
   }
 
-  public AnnotationInfo creatorGuid(String creatorGuid) {
-    this.creatorGuid = creatorGuid;
+  public AnnotationInfo textToReplace(String textToReplace) {
+    this.textToReplace = textToReplace;
+    return this;
+  }
+
+   /**
+   * GGets or sets text to be replaced
+   * @return textToReplace
+  **/
+  @ApiModelProperty(value = "GGets or sets text to be replaced")
+  public String getTextToReplace() {
+    return textToReplace;
+  }
+
+  public void setTextToReplace(String textToReplace) {
+    this.textToReplace = textToReplace;
+  }
+
+  public AnnotationInfo horizontalAlignment(HorizontalAlignmentEnum horizontalAlignment) {
+    this.horizontalAlignment = horizontalAlignment;
+    return this;
+  }
+
+   /**
+   * Gets or sets text horizontal alignment
+   * @return horizontalAlignment
+  **/
+  @ApiModelProperty(required = true, value = "Gets or sets text horizontal alignment")
+  public HorizontalAlignmentEnum getHorizontalAlignment() {
+    return horizontalAlignment;
+  }
+
+  public void setHorizontalAlignment(HorizontalAlignmentEnum horizontalAlignment) {
+    this.horizontalAlignment = horizontalAlignment;
+  }
+
+  public AnnotationInfo verticalAlignment(VerticalAlignmentEnum verticalAlignment) {
+    this.verticalAlignment = verticalAlignment;
+    return this;
+  }
+
+   /**
+   * Gets or sets text vertical alignment
+   * @return verticalAlignment
+  **/
+  @ApiModelProperty(required = true, value = "Gets or sets text vertical alignment")
+  public VerticalAlignmentEnum getVerticalAlignment() {
+    return verticalAlignment;
+  }
+
+  public void setVerticalAlignment(VerticalAlignmentEnum verticalAlignment) {
+    this.verticalAlignment = verticalAlignment;
+  }
+
+  public AnnotationInfo creatorId(Integer creatorId) {
+    this.creatorId = creatorId;
     return this;
   }
 
    /**
    * Gets or sets the creator unique identifier
-   * @return creatorGuid
+   * @return creatorId
   **/
-  @ApiModelProperty(value = "Gets or sets the creator unique identifier")
-  public String getCreatorGuid() {
-    return creatorGuid;
+  @ApiModelProperty(required = true, value = "Gets or sets the creator unique identifier")
+  public Integer getCreatorId() {
+    return creatorId;
   }
 
-  public void setCreatorGuid(String creatorGuid) {
-    this.creatorGuid = creatorGuid;
+  public void setCreatorId(Integer creatorId) {
+    this.creatorId = creatorId;
   }
 
   public AnnotationInfo creatorName(String creatorName) {
@@ -362,6 +523,32 @@ public class AnnotationInfo {
 
   public void setBox(Rectangle box) {
     this.box = box;
+  }
+
+  public AnnotationInfo points(List<Point> points) {
+    this.points = points;
+    return this;
+  }
+
+  public AnnotationInfo addPointsItem(Point pointsItem) {
+    if (this.points == null) {
+      this.points = new ArrayList<Point>();
+    }
+    this.points.add(pointsItem);
+    return this;
+  }
+
+   /**
+   * Gets or sets collection of points that describe rectangles with text
+   * @return points
+  **/
+  @ApiModelProperty(value = "Gets or sets collection of points that describe rectangles with text")
+  public List<Point> getPoints() {
+    return points;
+  }
+
+  public void setPoints(List<Point> points) {
+    this.points = points;
   }
 
   public AnnotationInfo pageNumber(Integer pageNumber) {
@@ -434,24 +621,6 @@ public class AnnotationInfo {
 
   public void setType(TypeEnum type) {
     this.type = type;
-  }
-
-  public AnnotationInfo access(AccessEnum access) {
-    this.access = access;
-    return this;
-  }
-
-   /**
-   * Gets or sets the annotation access
-   * @return access
-  **/
-  @ApiModelProperty(value = "Gets or sets the annotation access")
-  public AccessEnum getAccess() {
-    return access;
-  }
-
-  public void setAccess(AccessEnum access) {
-    this.access = access;
   }
 
   public AnnotationInfo replies(List<AnnotationReplyInfo> replies) {
@@ -552,7 +721,7 @@ public class AnnotationInfo {
     this.penWidth = penWidth;
   }
 
-  public AnnotationInfo penStyle(Integer penStyle) {
+  public AnnotationInfo penStyle(PenStyleEnum penStyle) {
     this.penStyle = penStyle;
     return this;
   }
@@ -562,11 +731,11 @@ public class AnnotationInfo {
    * @return penStyle
   **/
   @ApiModelProperty(value = "Gets or sets the annotation's pen style")
-  public Integer getPenStyle() {
+  public PenStyleEnum getPenStyle() {
     return penStyle;
   }
 
-  public void setPenStyle(Integer penStyle) {
+  public void setPenStyle(PenStyleEnum penStyle) {
     this.penStyle = penStyle;
   }
 
@@ -586,24 +755,6 @@ public class AnnotationInfo {
 
   public void setBackgroundColor(Integer backgroundColor) {
     this.backgroundColor = backgroundColor;
-  }
-
-  public AnnotationInfo fieldText(String fieldText) {
-    this.fieldText = fieldText;
-    return this;
-  }
-
-   /**
-   * Gets or sets the annotation&#39;s field text
-   * @return fieldText
-  **/
-  @ApiModelProperty(value = "Gets or sets the annotation's field text")
-  public String getFieldText() {
-    return fieldText;
-  }
-
-  public void setFieldText(String fieldText) {
-    this.fieldText = fieldText;
   }
 
   public AnnotationInfo fontFamily(String fontFamily) {
@@ -678,6 +829,42 @@ public class AnnotationInfo {
     this.angle = angle;
   }
 
+  public AnnotationInfo url(String url) {
+    this.url = url;
+    return this;
+  }
+
+   /**
+   * Gets or sets annotation link url
+   * @return url
+  **/
+  @ApiModelProperty(value = "Gets or sets annotation link url")
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public AnnotationInfo imagePath(String imagePath) {
+    this.imagePath = imagePath;
+    return this;
+  }
+
+   /**
+   * Gets or sets image file path in cloud storage, for Image annotations
+   * @return imagePath
+  **/
+  @ApiModelProperty(value = "Gets or sets image file path in cloud storage, for Image annotations")
+  public String getImagePath() {
+    return imagePath;
+  }
+
+  public void setImagePath(String imagePath) {
+    this.imagePath = imagePath;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -688,18 +875,20 @@ public class AnnotationInfo {
       return false;
     }
     AnnotationInfo annotationInfo = (AnnotationInfo) o;
-    return Objects.equals(this.guid, annotationInfo.guid) &&
-        Objects.equals(this.documentGuid, annotationInfo.documentGuid) &&
+    return Objects.equals(this.id, annotationInfo.id) &&
         Objects.equals(this.text, annotationInfo.text) &&
-        Objects.equals(this.creatorGuid, annotationInfo.creatorGuid) &&
+        Objects.equals(this.textToReplace, annotationInfo.textToReplace) &&
+        Objects.equals(this.horizontalAlignment, annotationInfo.horizontalAlignment) &&
+        Objects.equals(this.verticalAlignment, annotationInfo.verticalAlignment) &&
+        Objects.equals(this.creatorId, annotationInfo.creatorId) &&
         Objects.equals(this.creatorName, annotationInfo.creatorName) &&
         Objects.equals(this.creatorEmail, annotationInfo.creatorEmail) &&
         Objects.equals(this.box, annotationInfo.box) &&
+        Objects.equals(this.points, annotationInfo.points) &&
         Objects.equals(this.pageNumber, annotationInfo.pageNumber) &&
         Objects.equals(this.annotationPosition, annotationInfo.annotationPosition) &&
         Objects.equals(this.svgPath, annotationInfo.svgPath) &&
         Objects.equals(this.type, annotationInfo.type) &&
-        Objects.equals(this.access, annotationInfo.access) &&
         Objects.equals(this.replies, annotationInfo.replies) &&
         Objects.equals(this.createdOn, annotationInfo.createdOn) &&
         Objects.equals(this.fontColor, annotationInfo.fontColor) &&
@@ -707,16 +896,17 @@ public class AnnotationInfo {
         Objects.equals(this.penWidth, annotationInfo.penWidth) &&
         Objects.equals(this.penStyle, annotationInfo.penStyle) &&
         Objects.equals(this.backgroundColor, annotationInfo.backgroundColor) &&
-        Objects.equals(this.fieldText, annotationInfo.fieldText) &&
         Objects.equals(this.fontFamily, annotationInfo.fontFamily) &&
         Objects.equals(this.fontSize, annotationInfo.fontSize) &&
         Objects.equals(this.opacity, annotationInfo.opacity) &&
-        Objects.equals(this.angle, annotationInfo.angle);
+        Objects.equals(this.angle, annotationInfo.angle) &&
+        Objects.equals(this.url, annotationInfo.url) &&
+        Objects.equals(this.imagePath, annotationInfo.imagePath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(guid, documentGuid, text, creatorGuid, creatorName, creatorEmail, box, pageNumber, annotationPosition, svgPath, type, access, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, fieldText, fontFamily, fontSize, opacity, angle);
+    return Objects.hash(id, text, textToReplace, horizontalAlignment, verticalAlignment, creatorId, creatorName, creatorEmail, box, points, pageNumber, annotationPosition, svgPath, type, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, fontFamily, fontSize, opacity, angle, url, imagePath);
   }
 
 
@@ -725,18 +915,20 @@ public class AnnotationInfo {
     StringBuilder sb = new StringBuilder();
     sb.append("class AnnotationInfo {\n");
     
-    sb.append("    guid: ").append(toIndentedString(guid)).append("\n");
-    sb.append("    documentGuid: ").append(toIndentedString(documentGuid)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
-    sb.append("    creatorGuid: ").append(toIndentedString(creatorGuid)).append("\n");
+    sb.append("    textToReplace: ").append(toIndentedString(textToReplace)).append("\n");
+    sb.append("    horizontalAlignment: ").append(toIndentedString(horizontalAlignment)).append("\n");
+    sb.append("    verticalAlignment: ").append(toIndentedString(verticalAlignment)).append("\n");
+    sb.append("    creatorId: ").append(toIndentedString(creatorId)).append("\n");
     sb.append("    creatorName: ").append(toIndentedString(creatorName)).append("\n");
     sb.append("    creatorEmail: ").append(toIndentedString(creatorEmail)).append("\n");
     sb.append("    box: ").append(toIndentedString(box)).append("\n");
+    sb.append("    points: ").append(toIndentedString(points)).append("\n");
     sb.append("    pageNumber: ").append(toIndentedString(pageNumber)).append("\n");
     sb.append("    annotationPosition: ").append(toIndentedString(annotationPosition)).append("\n");
     sb.append("    svgPath: ").append(toIndentedString(svgPath)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    access: ").append(toIndentedString(access)).append("\n");
     sb.append("    replies: ").append(toIndentedString(replies)).append("\n");
     sb.append("    createdOn: ").append(toIndentedString(createdOn)).append("\n");
     sb.append("    fontColor: ").append(toIndentedString(fontColor)).append("\n");
@@ -744,11 +936,12 @@ public class AnnotationInfo {
     sb.append("    penWidth: ").append(toIndentedString(penWidth)).append("\n");
     sb.append("    penStyle: ").append(toIndentedString(penStyle)).append("\n");
     sb.append("    backgroundColor: ").append(toIndentedString(backgroundColor)).append("\n");
-    sb.append("    fieldText: ").append(toIndentedString(fieldText)).append("\n");
     sb.append("    fontFamily: ").append(toIndentedString(fontFamily)).append("\n");
     sb.append("    fontSize: ").append(toIndentedString(fontSize)).append("\n");
     sb.append("    opacity: ").append(toIndentedString(opacity)).append("\n");
     sb.append("    angle: ").append(toIndentedString(angle)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    imagePath: ").append(toIndentedString(imagePath)).append("\n");
     sb.append("}");
     return sb.toString();
   }
