@@ -94,30 +94,16 @@ Then manually install the following JARs:
 
 ```java
 
-import com.groupdocs.cloud.annotation.client.*;
-import com.groupdocs.cloud.annotation.model.*;
-import com.groupdocs.cloud.annotation.api.AnnotateApi;
+// Get Client Id and Client Secret from https://dashboard.groupdocs.cloud
+String MyClientId = "";
+String MyClientSecret = "";
 
-import java.io.File;
-import java.util.*;
+// Create instance of the API
+Configuration configuration = new Configuration(MyClientId, MyClientSecret);
+AnnotateApi apiInstance = new AnnotateApi(configuration);
 
-public class AnnotateApiExample {
-
-    public static void main(String[] args) {
-        //TODO: Get your AppSID and AppKey at https://dashboard.groupdocs.cloud (free registration is required).
-        String appSid = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
-        String appKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-
-        AnnotateApi apiInstance = new AnnotateApi(appSid, appKey);
-        String filePath = "filePath_example"; // String | Document path in storage
-        try {
-            apiInstance.deleteAnnotations(filePath);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AnnotateApi#deleteAnnotations");
-            e.printStackTrace();
-        }
-    }
-}
+String filePath = "filePath_example"; // String | Document path in storage
+apiInstance.deleteAnnotations(filePath);
 
 ```
 
