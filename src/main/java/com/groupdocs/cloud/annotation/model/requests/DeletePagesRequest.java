@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="DeletePagesRequest.java">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -54,27 +54,27 @@ public class DeletePagesRequest {
 
     /**
     * Initializes a new instance of the DeletePagesRequest class.    
-    * @param filePath Document path in storage
+    * @param fileInfo Document info to remove preview
     */
-    public DeletePagesRequest(String filePath)
+    public DeletePagesRequest(FileInfo fileInfo)
     {
-        this.filePath = filePath;
+        this.fileInfo = fileInfo;
     }
 
-  @SerializedName("filePath")
-  private String filePath = null;
+  @SerializedName("fileInfo")
+  private FileInfo fileInfo = null;
 
   /**
-   * Document path in storage
-   * @return Document path in storage
+   * Document info to remove preview
+   * @return Document info to remove preview
   **/
-  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
-  public String getfilePath() {
-    return filePath;
+  @ApiModelProperty(example = "new FileInfo()", required = true, value = "Document info to remove preview")
+  public FileInfo getfileInfo() {
+    return fileInfo;
   }
 
-  public void setfilePath(String filePath) {
-    this.filePath = filePath;
+  public void setfileInfo(FileInfo fileInfo) {
+    this.fileInfo = fileInfo;
   }
 
   @Override
@@ -88,19 +88,19 @@ public class DeletePagesRequest {
     }
     
     DeletePagesRequest request = (DeletePagesRequest) o;
-    return Objects.equals(this.filePath, request.filePath);
+    return Objects.equals(this.fileInfo, request.fileInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePath);
+    return Objects.hash(fileInfo);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeletePages {\n");
-    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
+    sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

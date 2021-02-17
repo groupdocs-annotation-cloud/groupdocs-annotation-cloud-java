@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2020 Aspose Pty Ltd
+ * Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,6 +26,7 @@
  */
 package com.groupdocs.cloud.annotation.api;
 
+import com.groupdocs.cloud.annotation.model.*;
 import com.groupdocs.cloud.annotation.client.ApiException;
 import com.groupdocs.cloud.annotation.model.DocumentInfo;
 import com.groupdocs.cloud.annotation.model.requests.GetInfoRequest;
@@ -43,12 +44,30 @@ public class AnnotationInfoApiTests extends BaseApiTest
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx,", "diagram\\one-page.vsd,", "email\\one-page.emlx,", "images\\one-page.png,", "pdf\\one-page.pdf,", "slides\\one-page.pptx,", "words\\one-page.docx,", "cells\\ten-pages.xlsx,", "diagram\\ten-pages.vsd,", "pdf\\ten-pages.pdf,", "slides\\ten-pages.pptx,", "words\\ten-pages.docx,", "pdf\\one-page-password.pdf,password", "words\\one-page-password.docx,password"
+                "cells\\one-page.xlsx,",
+                "diagram\\one-page.vsd,",
+                "email\\one-page.emlx,",
+                "images\\one-page.png,",
+                "pdf\\one-page.pdf,",
+                "slides\\one-page.pptx,",
+                "words\\one-page.docx,",
+                "cells\\ten-pages.xlsx,",
+                "diagram\\ten-pages.vsd,",
+                "pdf\\ten-pages.pdf,",
+                "slides\\ten-pages.pptx,",
+                "words\\ten-pages.docx,",
+                "pdf\\one-page-password.pdf,password",
+                "words\\one-page-password.docx,password"
             })
     public void testGetInfo(String filePath, String password) throws ApiException
     {
-        GetInfoRequest request = new GetInfoRequest(filePath, password);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+        fileInfo.setPassword(password);
+
+        GetInfoRequest request = new GetInfoRequest(fileInfo);
         DocumentInfo info = infoApi.getInfo(request);
+        
         assertNotNull(info);
         assertEquals(filePath, info.getPath());
     }

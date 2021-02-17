@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2020 Aspose Pty Ltd
+ * Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -65,6 +65,17 @@ public class TestFiles
     public static TestFile OnePagePasswordWords = new TestFile("one-page-password.docx", "words\\");
     public static TestFile TenPagesWords = new TestFile("ten-pages.docx", "words\\");
 
+    // With annotations
+    public static TestFile InputWords = new TestFile("input.docx", "input\\");
+    public static TestFile InputCells = new TestFile("input.xlsx", "input\\");
+    public static TestFile InputEmail = new TestFile("input.eml", "input\\");
+    public static TestFile InputHtml = new TestFile("input.html", "input\\");
+    public static TestFile InputPdf = new TestFile("input.pdf", "input\\");
+    public static TestFile InputImage = new TestFile("input.png", "input\\");
+    public static TestFile InputPresentation = new TestFile("input.pptx", "input\\");
+    public static TestFile InputDiagram = new TestFile("input.vsdx", "input\\");
+
+
     public static ArrayList<TestFile> TestFilesList()
     {
         ArrayList<TestFile> files = new ArrayList<>();
@@ -86,6 +97,14 @@ public class TestFiles
         files.add(OnePageWords);
         files.add(OnePagePasswordWords);
         files.add(TenPagesWords);
+        files.add(InputWords);
+        files.add(InputCells);
+        files.add(InputEmail);
+        files.add(InputHtml);
+        files.add(InputPdf);
+        files.add(InputImage);
+        files.add(InputPresentation);
+        files.add(InputDiagram);        
         return files;
     }
 }

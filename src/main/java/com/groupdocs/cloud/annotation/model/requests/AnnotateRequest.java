@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="PostAnnotationsRequest.java">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ * <copyright company="Aspose Pty Ltd" file="AnnotateRequest.java">
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,58 +41,40 @@ import java.io.IOException;
 import java.io.File;
 
 /**
- * Request model for postAnnotations method.
+ * Request model for annotate method.
  */
-public class PostAnnotationsRequest {
+public class AnnotateRequest {
     
     /**
-    * Initializes a new instance of the PostAnnotationsRequest class.
+    * Initializes a new instance of the AnnotateRequest class.
     */      
-    public PostAnnotationsRequest()
+    public AnnotateRequest()
     {
     }
 
     /**
-    * Initializes a new instance of the PostAnnotationsRequest class.    
-    * @param filePath Document path in storage
-    * @param annotations Array of annotation descriptions
+    * Initializes a new instance of the AnnotateRequest class.    
+    * @param options Annotation options
     */
-    public PostAnnotationsRequest(String filePath, List<AnnotationInfo> annotations)
+    public AnnotateRequest(AnnotateOptions options)
     {
-        this.filePath = filePath;
-        this.annotations = annotations;
+        this.options = options;
     }
 
-  @SerializedName("filePath")
-  private String filePath = null;
-
-  @SerializedName("annotations")
-  private List<AnnotationInfo> annotations = null;
+  @SerializedName("options")
+  private AnnotateOptions options = null;
 
   /**
-   * Document path in storage
-   * @return Document path in storage
+   * Annotation options
+   * @return Annotation options
   **/
-  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
-  public String getfilePath() {
-    return filePath;
+  @ApiModelProperty(example = "new AnnotateOptions()", required = true, value = "Annotation options")
+  public AnnotateOptions getoptions() {
+    return options;
   }
 
-  public void setfilePath(String filePath) {
-    this.filePath = filePath;
-  }
-
-  /**
-   * Array of annotation descriptions
-   * @return Array of annotation descriptions
-  **/
-  @ApiModelProperty(example = "Arrays.asList(new AnnotationInfo())", required = true, value = "Array of annotation descriptions")
-  public List<AnnotationInfo> getannotations() {
-    return annotations;
-  }
-
-  public void setannotations(List<AnnotationInfo> annotations) {
-    this.annotations = annotations;
+  public void setoptions(AnnotateOptions options) {
+    this.options = options;
   }
 
   @Override
@@ -105,22 +87,20 @@ public class PostAnnotationsRequest {
       return false;
     }
     
-    PostAnnotationsRequest request = (PostAnnotationsRequest) o;
-    return Objects.equals(this.filePath, request.filePath) &&
-        Objects.equals(this.annotations, request.annotations);
+    AnnotateRequest request = (AnnotateRequest) o;
+    return Objects.equals(this.options, request.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePath, annotations);
+    return Objects.hash(options);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PostAnnotations {\n");
-    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
-    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
+    sb.append("class Annotate {\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }

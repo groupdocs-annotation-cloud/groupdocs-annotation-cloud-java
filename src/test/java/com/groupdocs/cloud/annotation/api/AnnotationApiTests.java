@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2020 Aspose Pty Ltd
+ * Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,10 +30,7 @@ import com.groupdocs.cloud.annotation.client.ApiException;
 import com.groupdocs.cloud.annotation.model.*;
 import com.groupdocs.cloud.annotation.model.AnnotationInfo.PenStyleEnum;
 import com.groupdocs.cloud.annotation.model.AnnotationInfo.TypeEnum;
-import com.groupdocs.cloud.annotation.model.requests.DeleteAnnotationsRequest;
-import com.groupdocs.cloud.annotation.model.requests.GetExportRequest;
-import com.groupdocs.cloud.annotation.model.requests.GetImportRequest;
-import com.groupdocs.cloud.annotation.model.requests.PostAnnotationsRequest;
+import com.groupdocs.cloud.annotation.model.requests.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -53,22 +50,35 @@ public class AnnotationApiTests extends BaseApiTest
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx",
-                "diagram\\one-page.vsd",
-                "email\\one-page.emlx",
-                "images\\one-page.png",
-                 "pdf\\one-page.pdf",
-                "slides\\one-page.pptx",
-                "words\\one-page.docx",
-                "cells\\one-page-password.xlsx",
-                "pdf\\one-page-password.pdf",
-                "slides\\one-page-password.pptx",
-                "words\\one-page-password.docx"
+                "cells\\one-page.xlsx,",
+                "diagram\\one-page.vsd,",
+                "email\\one-page.emlx,",
+                "images\\one-page.png,",
+                 "pdf\\one-page.pdf,",
+                "slides\\one-page.pptx,",
+                "words\\one-page.docx,",
+                "cells\\one-page-password.xlsx,password",
+                "pdf\\one-page-password.pdf,password",
+                "slides\\one-page-password.pptx,password",
+                "words\\one-page-password.docx,password"
             })
-    public void test1PostAnnotations(String filePath) throws ApiException
+    public void testAddAnnotations(String filePath, String password) throws ApiException
     {
-        PostAnnotationsRequest request = new PostAnnotationsRequest(filePath, getAnnotationsTestBody());
-        annotateApi.postAnnotations(request);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+        fileInfo.setPassword(password);
+
+        AnnotateOptions options = new AnnotateOptions();
+        options.setFileInfo(fileInfo);
+        options.setAnnotations(getAnnotations());
+        options.setOutputPath(DefaultOutputPath + "/" + filePath.substring(filePath.lastIndexOf("\\")+1));
+
+        AnnotateRequest request = new AnnotateRequest(options);
+        AnnotationApiLink result = annotateApi.annotate(request);
+
+        assertNotNull(result);
+        assertNotNull(result.getHref());
+        assertNotEquals(0, result.getHref().length());
     }
 
     @Test
@@ -80,37 +90,48 @@ public class AnnotationApiTests extends BaseApiTest
                 "slides\\ten-pages.pptx",
                 "words\\ten-pages.docx"
             })
-    public void test1PostAnnotationsManyPages(String filePath) throws ApiException
+    public void testAddAnnotationsManyPages(String filePath) throws ApiException
     {
-        PostAnnotationsRequest request = new PostAnnotationsRequest(filePath, getAnnotationsTestBodyManyPages());
-        annotateApi.postAnnotations(request);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+
+        AnnotateOptions options = new AnnotateOptions();
+        options.setFileInfo(fileInfo);
+        options.setAnnotations(getAnnotationsManyPages());
+        options.setOutputPath(DefaultOutputPath + "/" + filePath.substring(filePath.lastIndexOf("\\")+1));
+
+        AnnotateRequest request = new AnnotateRequest(options);
+        AnnotationApiLink result = annotateApi.annotate(request);
+
+        assertNotNull(result);
+        assertNotNull(result.getHref());
+        assertNotEquals(0, result.getHref().length());
     }
 
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx",
-                "diagram\\one-page.vsd",
-                "email\\one-page.emlx",
-                "images\\one-page.png",
-                "pdf\\one-page.pdf",
-                "slides\\one-page.pptx",
-                "words\\one-page.docx",
-                "cells\\ten-pages.xlsx",
-                "diagram\\ten-pages.vsd",
-                "pdf\\ten-pages.pdf",
-                "slides\\ten-pages.pptx",
-                "words\\ten-pages.docx",
-                "cells\\one-page-password.xlsx",
-                "pdf\\one-page-password.pdf",
-                "slides\\one-page-password.pptx",
-                "words\\one-page-password.docx"
+                "input\\input.docx",
+                "input\\input.xlsx",
+                "input\\input.eml",
+                "input\\input.html",
+                "input\\input.pdf",
+                "input\\input.png",
+                "input\\input.pptx",
+                "input\\input.vsdx",
             })
-    public void test2GetImport(String filePath) throws ApiException
+    public void testExtract(String filePath) throws ApiException
     {
-        List<AnnotationInfo> annotations = annotateApi.getImport(new GetImportRequest(filePath));
-        assertNotEquals(null, annotations);
-        assertTrue(annotations.get(0) instanceof AnnotationInfo);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+        
+        ExtractRequest request = new ExtractRequest(fileInfo);
+
+        List<AnnotationInfo> result = annotateApi.extract(request);
+
+        assertNotNull(result);
+        assertNotEquals(0, result.size());
+        assertTrue(result.get(0) instanceof AnnotationInfo);
     }
 
     @Test
@@ -119,47 +140,66 @@ public class AnnotationApiTests extends BaseApiTest
                 "diagram\\one-page.vsd,,false,0,0,",
                 "email\\one-page.emlx,,false,0,0,",
                 "images\\one-page.png,,false,0,0,",
-                "pdf\\one-page.pdf,,false,0,0,",
+                "pdf\\one-page.pdf,,false,-1,-1,",
                 "slides\\one-page.pptx,,false,0,0,",
                 "words\\one-page.docx,,false,0,0,",
                 "diagram\\ten-pages.vsd,Area,false,2,5,",
                 "pdf\\ten-pages.pdf,Area,false,2,5,",
                 "slides\\ten-pages.pptx,Area,false,2,5,",
                 "words\\ten-pages.docx,Area,false,2,5,",
-                "pdf\\one-page-password.pdf,,false,0,0,password",
+                 "pdf\\one-page-password.pdf,,false,-1,-1,password",
                 "slides\\one-page-password.pptx,,false,0,0,password",
                 "words\\one-page-password.docx,,false,0,0,password"
             })
-    public void test3GetExport(String filePath, String annotationTypes, Boolean annotatedPages, Integer firstPage, Integer lastPage, String password) throws ApiException
+    public void testAddDirect(String filePath, String annotationTypes, Boolean annotatedPages, Integer firstPage, Integer lastPage, String password) throws ApiException
     {
-        GetExportRequest request = new GetExportRequest(filePath, annotationTypes, annotatedPages, firstPage, lastPage, password);
-        File result = annotateApi.getExport(request);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+        fileInfo.setPassword(password);
+
+        AnnotateOptions options = new AnnotateOptions();
+        options.setFileInfo(fileInfo);
+        options.setAnnotations(getAnnotations());
+        options.setFirstPage(firstPage);
+        options.setLastPage(lastPage);
+        options.setOnlyAnnotatedPages(annotatedPages);
+        options.setOutputPath(DefaultOutputPath + "/" + filePath.substring(filePath.lastIndexOf("\\")+1));
+
+        AnnotateDirectRequest request = new AnnotateDirectRequest(options);
+        File result = annotateApi.annotateDirect(request);
+
+        assertNotNull(result);
         assertTrue(result.getTotalSpace() > 0);
     }
 
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx",
-                "diagram\\one-page.vsd",
-                "email\\one-page.emlx",
-                "images\\one-page.png",
-                "pdf\\one-page.pdf",
-                "slides\\one-page.pptx",
-                "words\\one-page.docx",
-                "cells\\ten-pages.xlsx",
-                "diagram\\ten-pages.vsd",
-                "pdf\\ten-pages.pdf",
-                "slides\\ten-pages.pptx",
-                "words\\ten-pages.docx",
-                "cells\\one-page-password.xlsx",
-                "pdf\\one-page-password.pdf",
-                "slides\\one-page-password.pptx",
-                "words\\one-page-password.docx"
+                "input\\input.docx",
+                "input\\input.xlsx",
+                "input\\input.eml",
+                "input\\input.html",
+                "input\\input.pdf",
+                "input\\input.png",
+                "input\\input.pptx",
+                "input\\input.vsdx"
             })
-    public void test4DeleteAnnotations(String filePath) throws ApiException
+    public void testRemoveAnnotations(String filePath) throws ApiException
     {
-        annotateApi.deleteAnnotations(new DeleteAnnotationsRequest(filePath));
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+
+        RemoveOptions options = new RemoveOptions();
+        options.setFileInfo(fileInfo);        
+        options.setAnnotationIds(Arrays.asList(1, 2, 3));
+        options.setOutputPath(DefaultOutputPath + "/" + filePath.substring(filePath.lastIndexOf("\\")+1));
+
+        RemoveAnnotationsRequest request = new RemoveAnnotationsRequest(options);
+        AnnotationApiLink result = annotateApi.removeAnnotations(request);
+
+        assertNotNull(result);
+        assertNotNull(result.getHref());
+        assertNotEquals(0, result.getHref().length());
     }
 
     private Point GetPoint()
@@ -180,13 +220,13 @@ public class AnnotationApiTests extends BaseApiTest
         return r;
     }    
 
-    private List<AnnotationInfo> getAnnotationsTestBody()
+    private List<AnnotationInfo> getAnnotations()
     {
         AnnotationInfo[] annotations = new AnnotationInfo[1];
         annotations[0] = new AnnotationInfo();
         annotations[0].setAnnotationPosition(GetPoint());
         annotations[0].setBox(GetRectangle());
-        annotations[0].setPageNumber(1);
+        annotations[0].setPageNumber(0);
         annotations[0].setPenColor(1201033);
         annotations[0].setPenStyle(PenStyleEnum.SOLID);
         annotations[0].setPenWidth(1);
@@ -195,7 +235,7 @@ public class AnnotationApiTests extends BaseApiTest
         return Arrays.asList(annotations);
     }
 
-    private List<AnnotationInfo> getAnnotationsTestBodyManyPages()
+    private List<AnnotationInfo> getAnnotationsManyPages()
     {
         AnnotationInfo[] annotations = new AnnotationInfo[4];
         annotations[0] = new AnnotationInfo();

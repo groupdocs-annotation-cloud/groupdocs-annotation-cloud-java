@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="GetImportRequest.java">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ * <copyright company="Aspose Pty Ltd" file="RemoveAnnotationsRequest.java">
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,40 +41,40 @@ import java.io.IOException;
 import java.io.File;
 
 /**
- * Request model for getImport method.
+ * Request model for removeAnnotations method.
  */
-public class GetImportRequest {
+public class RemoveAnnotationsRequest {
     
     /**
-    * Initializes a new instance of the GetImportRequest class.
+    * Initializes a new instance of the RemoveAnnotationsRequest class.
     */      
-    public GetImportRequest()
+    public RemoveAnnotationsRequest()
     {
     }
 
     /**
-    * Initializes a new instance of the GetImportRequest class.    
-    * @param filePath Document path in storage
+    * Initializes a new instance of the RemoveAnnotationsRequest class.    
+    * @param options Remove annotations options
     */
-    public GetImportRequest(String filePath)
+    public RemoveAnnotationsRequest(RemoveOptions options)
     {
-        this.filePath = filePath;
+        this.options = options;
     }
 
-  @SerializedName("filePath")
-  private String filePath = null;
+  @SerializedName("options")
+  private RemoveOptions options = null;
 
   /**
-   * Document path in storage
-   * @return Document path in storage
+   * Remove annotations options
+   * @return Remove annotations options
   **/
-  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
-  public String getfilePath() {
-    return filePath;
+  @ApiModelProperty(example = "new RemoveOptions()", required = true, value = "Remove annotations options")
+  public RemoveOptions getoptions() {
+    return options;
   }
 
-  public void setfilePath(String filePath) {
-    this.filePath = filePath;
+  public void setoptions(RemoveOptions options) {
+    this.options = options;
   }
 
   @Override
@@ -87,20 +87,20 @@ public class GetImportRequest {
       return false;
     }
     
-    GetImportRequest request = (GetImportRequest) o;
-    return Objects.equals(this.filePath, request.filePath);
+    RemoveAnnotationsRequest request = (RemoveAnnotationsRequest) o;
+    return Objects.equals(this.options, request.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePath);
+    return Objects.hash(options);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GetImport {\n");
-    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
+    sb.append("class RemoveAnnotations {\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
- * <copyright company="Aspose Pty Ltd" file="DeleteAnnotationsRequest.java">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ * <copyright company="Aspose Pty Ltd" file="ExtractRequest.java">
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,40 +41,40 @@ import java.io.IOException;
 import java.io.File;
 
 /**
- * Request model for deleteAnnotations method.
+ * Request model for extract method.
  */
-public class DeleteAnnotationsRequest {
+public class ExtractRequest {
     
     /**
-    * Initializes a new instance of the DeleteAnnotationsRequest class.
+    * Initializes a new instance of the ExtractRequest class.
     */      
-    public DeleteAnnotationsRequest()
+    public ExtractRequest()
     {
     }
 
     /**
-    * Initializes a new instance of the DeleteAnnotationsRequest class.    
-    * @param filePath Document path in storage
+    * Initializes a new instance of the ExtractRequest class.    
+    * @param fileInfo Input file information
     */
-    public DeleteAnnotationsRequest(String filePath)
+    public ExtractRequest(FileInfo fileInfo)
     {
-        this.filePath = filePath;
+        this.fileInfo = fileInfo;
     }
 
-  @SerializedName("filePath")
-  private String filePath = null;
+  @SerializedName("fileInfo")
+  private FileInfo fileInfo = null;
 
   /**
-   * Document path in storage
-   * @return Document path in storage
+   * Input file information
+   * @return Input file information
   **/
-  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
-  public String getfilePath() {
-    return filePath;
+  @ApiModelProperty(example = "new FileInfo()", required = true, value = "Input file information")
+  public FileInfo getfileInfo() {
+    return fileInfo;
   }
 
-  public void setfilePath(String filePath) {
-    this.filePath = filePath;
+  public void setfileInfo(FileInfo fileInfo) {
+    this.fileInfo = fileInfo;
   }
 
   @Override
@@ -87,20 +87,20 @@ public class DeleteAnnotationsRequest {
       return false;
     }
     
-    DeleteAnnotationsRequest request = (DeleteAnnotationsRequest) o;
-    return Objects.equals(this.filePath, request.filePath);
+    ExtractRequest request = (ExtractRequest) o;
+    return Objects.equals(this.fileInfo, request.fileInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePath);
+    return Objects.hash(fileInfo);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeleteAnnotations {\n");
-    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
+    sb.append("class Extract {\n");
+    sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

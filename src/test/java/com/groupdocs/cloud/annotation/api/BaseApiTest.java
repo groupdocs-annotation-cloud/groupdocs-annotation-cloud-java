@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2020 Aspose Pty Ltd
+ * Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -79,6 +79,7 @@ public class BaseApiTest
     }
 
     private static boolean setUpIsDone = false;
+    protected String DefaultOutputPath = "Output";
 
     @Before
     public void setUp() throws ApiException, FileNotFoundException
@@ -111,7 +112,7 @@ public class BaseApiTest
 
     private void removeTempFiles() throws ApiException
     {
-        deleteFolderFromStorage("annotation");
+        deleteFolderFromStorage(DefaultOutputPath);
     }
 
     private void deleteFolderFromStorage(String folderName) throws ApiException

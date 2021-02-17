@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd">
- * Copyright (c) 2003-2020 Aspose Pty Ltd
+ * Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,12 +27,11 @@
 package com.groupdocs.cloud.annotation.api;
 
 import com.groupdocs.cloud.annotation.client.ApiException;
-import com.groupdocs.cloud.annotation.model.PageImages;
-import com.groupdocs.cloud.annotation.model.requests.DeletePagesRequest;
-import com.groupdocs.cloud.annotation.model.requests.GetPagesRequest;
+import com.groupdocs.cloud.annotation.model.*;
+import com.groupdocs.cloud.annotation.model.requests.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,32 +59,48 @@ public class AnnotationPagesApiTests extends BaseApiTest
                 "words\\ten-pages.docx||",
                 "pdf\\one-page-password.pdf|\"PNG\"|password"
             })
-    public void test1GetPages(String filePath, String format, String password) throws ApiException
+    public void test1CreatePages(String filePath, String format, String password) throws ApiException
     {
-        GetPagesRequest request = new GetPagesRequest(filePath, null, format, 0, 0, false, true, password);
-        PageImages imagePages = previewApi.getPages(request);
-        assertNotNull(imagePages);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+        fileInfo.setPassword(password);
+        
+        PreviewOptions options = new PreviewOptions();
+        options.setFileInfo(fileInfo);        
+
+        GetPagesRequest request = new GetPagesRequest(options);
+        PageImages result = previewApi.getPages(request);
+
+        assertNotNull(result);
+        assertNotEquals(0, (int)result.getTotalCount());
+        assertNotNull(result.getEntries());
+        assertNotEquals(0, result.getEntries().size());
     }
 
     @Test
     @Parameters(
             {
-                "cells\\one-page.xlsx",
-                "diagram\\one-page.vsd",
-                "email\\one-page.emlx",
-                "images\\one-page.png",
-                "pdf\\one-page.pdf",
-                "slides\\one-page.pptx",
-                "words\\one-page.docx",
-                "cells\\ten-pages.xlsx",
-                "diagram\\ten-pages.vsd",
-                "pdf\\ten-pages.pdf",
-                "slides\\ten-pages.pptx",
-                "words\\ten-pages.docx",
-                "pdf\\one-page-password.pdf"
+                "cells\\one-page.xlsx|",
+                "diagram\\one-page.vsd|",
+                "email\\one-page.emlx|",
+                "images\\one-page.png|",
+                "pdf\\one-page.pdf|",
+                "slides\\one-page.pptx|",
+                "words\\one-page.docx|",
+                "cells\\ten-pages.xlsx|",
+                "diagram\\ten-pages.vsd|",
+                "pdf\\ten-pages.pdf|",
+                "slides\\ten-pages.pptx|",
+                "words\\ten-pages.docx|",
+                "pdf\\one-page-password.pdf|password"
             })
-    public void test2DeletePages(String filePath) throws ApiException
+    public void test2DeletePages(String filePath, String password) throws ApiException
     {
-        previewApi.deletePages(new DeletePagesRequest(filePath));
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath(filePath);
+        fileInfo.setPassword(password);
+
+        DeletePagesRequest request = new DeletePagesRequest(fileInfo);
+        previewApi.deletePages(request);
     }
 }

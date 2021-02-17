@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="PreviewApi.java">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -87,15 +87,13 @@ public class PreviewApi {
      * @throws ApiException If fail to serialize the request body object
      */
     public com.squareup.okhttp.Call deletePagesCall(DeletePagesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+        Object localVarPostBody = request.getfileInfo();
 
         // create path and map variables
-        String localVarPath = "/annotation/pages";
+        String localVarPath = "/annotation/preview/remove";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (request.getfilePath() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("filePath", request.getfilePath()));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -126,15 +124,15 @@ public class PreviewApi {
         }
 
         String[] localVarAuthNames = new String[] { "JWT" };
-        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call deletePagesValidateBeforeCall(DeletePagesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'filePath' is set
-        if (request.getfilePath() == null) {
-            throw new ApiException("Missing the required parameter 'filePath' when calling deletePages(Async)");
+        // verify the required parameter 'fileInfo' is set
+        if (request.getfileInfo() == null) {
+            throw new ApiException("Missing the required parameter 'fileInfo' when calling deletePages(Async)");
         }
         
 
@@ -207,29 +205,13 @@ public class PreviewApi {
      * @throws ApiException If fail to serialize the request body object
      */
     public com.squareup.okhttp.Call getPagesCall(GetPagesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+        Object localVarPostBody = request.getoptions();
 
         // create path and map variables
-        String localVarPath = "/annotation/pages";
+        String localVarPath = "/annotation/preview/create";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (request.getfilePath() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("filePath", request.getfilePath()));
-        if (request.getpageNumbersToConvert() != null)
-            localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "pageNumbersToConvert", request.getpageNumbersToConvert()));
-        if (request.getformat() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("format", request.getformat()));
-        if (request.getwidth() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("width", request.getwidth()));
-        if (request.getheight() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("height", request.getheight()));
-        if (request.getwithoutAnnotations() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("withoutAnnotations", request.getwithoutAnnotations()));
-        if (request.getrenderComments() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("renderComments", request.getrenderComments()));
-        if (request.getpassword() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("password", request.getpassword()));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -260,15 +242,15 @@ public class PreviewApi {
         }
 
         String[] localVarAuthNames = new String[] { "JWT" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call getPagesValidateBeforeCall(GetPagesRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'filePath' is set
-        if (request.getfilePath() == null) {
-            throw new ApiException("Missing the required parameter 'filePath' when calling getPages(Async)");
+        // verify the required parameter 'options' is set
+        if (request.getoptions() == null) {
+            throw new ApiException("Missing the required parameter 'options' when calling getPages(Async)");
         }
         
 

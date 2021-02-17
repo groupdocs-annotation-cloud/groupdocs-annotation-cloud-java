@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="GetInfoRequest.java">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -54,45 +54,27 @@ public class GetInfoRequest {
 
     /**
     * Initializes a new instance of the GetInfoRequest class.    
-    * @param filePath Document path in storage
-    * @param password Source document password
+    * @param fileInfo Document path in storage and password
     */
-    public GetInfoRequest(String filePath, String password)
+    public GetInfoRequest(FileInfo fileInfo)
     {
-        this.filePath = filePath;
-        this.password = password;
+        this.fileInfo = fileInfo;
     }
 
-  @SerializedName("filePath")
-  private String filePath = null;
-
-  @SerializedName("password")
-  private String password = null;
+  @SerializedName("fileInfo")
+  private FileInfo fileInfo = null;
 
   /**
-   * Document path in storage
-   * @return Document path in storage
+   * Document path in storage and password
+   * @return Document path in storage and password
   **/
-  @ApiModelProperty(example = "filePath_example", required = true, value = "Document path in storage")
-  public String getfilePath() {
-    return filePath;
+  @ApiModelProperty(example = "new FileInfo()", required = true, value = "Document path in storage and password")
+  public FileInfo getfileInfo() {
+    return fileInfo;
   }
 
-  public void setfilePath(String filePath) {
-    this.filePath = filePath;
-  }
-
-  /**
-   * Source document password
-   * @return Source document password
-  **/
-  @ApiModelProperty(example = "password_example", value = "Source document password")
-  public String getpassword() {
-    return password;
-  }
-
-  public void setpassword(String password) {
-    this.password = password;
+  public void setfileInfo(FileInfo fileInfo) {
+    this.fileInfo = fileInfo;
   }
 
   @Override
@@ -106,21 +88,19 @@ public class GetInfoRequest {
     }
     
     GetInfoRequest request = (GetInfoRequest) o;
-    return Objects.equals(this.filePath, request.filePath) &&
-        Objects.equals(this.password, request.password);
+    return Objects.equals(this.fileInfo, request.fileInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filePath, password);
+    return Objects.hash(fileInfo);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetInfo {\n");
-    sb.append("    filePath: ").append(toIndentedString(filePath)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    fileInfo: ").append(toIndentedString(fileInfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

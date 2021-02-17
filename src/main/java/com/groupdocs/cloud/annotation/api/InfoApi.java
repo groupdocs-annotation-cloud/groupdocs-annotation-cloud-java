@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------------------------------------------------------------------------------
  * <copyright company="Aspose Pty Ltd" file="InfoApi.java">
- *   Copyright (c) 2003-2020 Aspose Pty Ltd
+ *   Copyright (c) 2003-2021 Aspose Pty Ltd
  * </copyright>
  * <summary>
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -87,17 +87,13 @@ public class InfoApi {
      * @throws ApiException If fail to serialize the request body object
      */
     public com.squareup.okhttp.Call getInfoCall(GetInfoRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+        Object localVarPostBody = request.getfileInfo();
 
         // create path and map variables
         String localVarPath = "/annotation/info";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (request.getfilePath() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("filePath", request.getfilePath()));
-        if (request.getpassword() != null)
-            localVarQueryParams.addAll(apiClient.parameterToPair("password", request.getpassword()));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -128,15 +124,15 @@ public class InfoApi {
         }
 
         String[] localVarAuthNames = new String[] { "JWT" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call getInfoValidateBeforeCall(GetInfoRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'filePath' is set
-        if (request.getfilePath() == null) {
-            throw new ApiException("Missing the required parameter 'filePath' when calling getInfo(Async)");
+        // verify the required parameter 'fileInfo' is set
+        if (request.getfileInfo() == null) {
+            throw new ApiException("Missing the required parameter 'fileInfo' when calling getInfo(Async)");
         }
         
 
