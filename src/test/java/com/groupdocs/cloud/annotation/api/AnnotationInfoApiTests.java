@@ -32,15 +32,31 @@ import com.groupdocs.cloud.annotation.model.DocumentInfo;
 import com.groupdocs.cloud.annotation.model.requests.GetInfoRequest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
 public class AnnotationInfoApiTests extends BaseApiTest
 {
+    @Test
+    public void TestGetInfoReturnsFileNotFound()
+    {
+        // Arrange        
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setFilePath("some-folder\\notExists.docx");        
 
+        GetInfoRequest request = new GetInfoRequest(fileInfo);
+
+        // Act & Assert  
+        try {
+            infoApi.getInfo(request);
+            fail("Expected ApiException was not thrown.");
+        } catch (ApiException ex) {
+            assertEquals("Specified file not found", ex.getMessage());
+        }  
+    }
+    
     @Test
     @Parameters(
             {

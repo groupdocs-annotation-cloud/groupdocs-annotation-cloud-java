@@ -109,8 +109,17 @@ public class PreviewOptions {
   @SerializedName("height")
   private Integer height = null;
 
+  @SerializedName("resolution")
+  private Integer resolution = null;
+
   @SerializedName("renderComments")
   private Boolean renderComments = null;
+
+  @SerializedName("renderAnnotations")
+  private Boolean renderAnnotations = null;
+
+  @SerializedName("fontsPath")
+  private String fontsPath = null;
 
   public PreviewOptions fileInfo(FileInfo fileInfo) {
     this.fileInfo = fileInfo;
@@ -210,6 +219,24 @@ public class PreviewOptions {
     this.height = height;
   }
 
+  public PreviewOptions resolution(Integer resolution) {
+    this.resolution = resolution;
+    return this;
+  }
+
+   /**
+   * Gets or sets the resolution for generated images, in dots per inch. The default value is 96.
+   * @return resolution
+  **/
+  @ApiModelProperty(required = true, value = "Gets or sets the resolution for generated images, in dots per inch. The default value is 96.")
+  public Integer getResolution() {
+    return resolution;
+  }
+
+  public void setResolution(Integer resolution) {
+    this.resolution = resolution;
+  }
+
   public PreviewOptions renderComments(Boolean renderComments) {
     this.renderComments = renderComments;
     return this;
@@ -228,6 +255,42 @@ public class PreviewOptions {
     this.renderComments = renderComments;
   }
 
+  public PreviewOptions renderAnnotations(Boolean renderAnnotations) {
+    this.renderAnnotations = renderAnnotations;
+    return this;
+  }
+
+   /**
+   * The property that controls whether annotations will be generated on the preview. Default State - true.
+   * @return renderAnnotations
+  **/
+  @ApiModelProperty(required = true, value = "The property that controls whether annotations will be generated on the preview. Default State - true.")
+  public Boolean getRenderAnnotations() {
+    return renderAnnotations;
+  }
+
+  public void setRenderAnnotations(Boolean renderAnnotations) {
+    this.renderAnnotations = renderAnnotations;
+  }
+
+  public PreviewOptions fontsPath(String fontsPath) {
+    this.fontsPath = fontsPath;
+    return this;
+  }
+
+   /**
+   * The path to directory containing custom fonts in storage
+   * @return fontsPath
+  **/
+  @ApiModelProperty(value = "The path to directory containing custom fonts in storage")
+  public String getFontsPath() {
+    return fontsPath;
+  }
+
+  public void setFontsPath(String fontsPath) {
+    this.fontsPath = fontsPath;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -243,12 +306,15 @@ public class PreviewOptions {
         Objects.equals(this.pageNumbers, previewOptions.pageNumbers) &&
         Objects.equals(this.width, previewOptions.width) &&
         Objects.equals(this.height, previewOptions.height) &&
-        Objects.equals(this.renderComments, previewOptions.renderComments);
+        Objects.equals(this.resolution, previewOptions.resolution) &&
+        Objects.equals(this.renderComments, previewOptions.renderComments) &&
+        Objects.equals(this.renderAnnotations, previewOptions.renderAnnotations) &&
+        Objects.equals(this.fontsPath, previewOptions.fontsPath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, format, pageNumbers, width, height, renderComments);
+    return Objects.hash(fileInfo, format, pageNumbers, width, height, resolution, renderComments, renderAnnotations, fontsPath);
   }
 
 
@@ -262,7 +328,10 @@ public class PreviewOptions {
     sb.append("    pageNumbers: ").append(toIndentedString(pageNumbers)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    resolution: ").append(toIndentedString(resolution)).append("\n");
     sb.append("    renderComments: ").append(toIndentedString(renderComments)).append("\n");
+    sb.append("    renderAnnotations: ").append(toIndentedString(renderAnnotations)).append("\n");
+    sb.append("    fontsPath: ").append(toIndentedString(fontsPath)).append("\n");
     sb.append("}");
     return sb.toString();
   }

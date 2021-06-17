@@ -38,7 +38,7 @@ Add following repository and dependency to your project's POM
 <dependency>
     <groupId>com.groupdocs</groupId>
     <artifactId>groupdocs-annotation-cloud</artifactId>
-    <version>21.2</version>
+    <version>21.6</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -53,7 +53,7 @@ mvn package
 
 Then manually install the following JARs:
 
-* target/groupdocs-annotation-cloud-21.2.jar
+* target/groupdocs-annotation-cloud-21.6.jar
 * target/lib/*.jar
 
 ## Getting Started

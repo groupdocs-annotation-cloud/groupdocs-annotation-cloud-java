@@ -64,6 +64,9 @@ public class AnnotateOptions {
   @SerializedName("outputPath")
   private String outputPath = null;
 
+  @SerializedName("fontsPath")
+  private String fontsPath = null;
+
   public AnnotateOptions fileInfo(FileInfo fileInfo) {
     this.fileInfo = fileInfo;
     return this;
@@ -180,6 +183,24 @@ public class AnnotateOptions {
     this.outputPath = outputPath;
   }
 
+  public AnnotateOptions fontsPath(String fontsPath) {
+    this.fontsPath = fontsPath;
+    return this;
+  }
+
+   /**
+   * The path to directory containing custom fonts in storage
+   * @return fontsPath
+  **/
+  @ApiModelProperty(value = "The path to directory containing custom fonts in storage")
+  public String getFontsPath() {
+    return fontsPath;
+  }
+
+  public void setFontsPath(String fontsPath) {
+    this.fontsPath = fontsPath;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -195,12 +216,13 @@ public class AnnotateOptions {
         Objects.equals(this.firstPage, annotateOptions.firstPage) &&
         Objects.equals(this.lastPage, annotateOptions.lastPage) &&
         Objects.equals(this.onlyAnnotatedPages, annotateOptions.onlyAnnotatedPages) &&
-        Objects.equals(this.outputPath, annotateOptions.outputPath);
+        Objects.equals(this.outputPath, annotateOptions.outputPath) &&
+        Objects.equals(this.fontsPath, annotateOptions.fontsPath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fileInfo, annotations, firstPage, lastPage, onlyAnnotatedPages, outputPath);
+    return Objects.hash(fileInfo, annotations, firstPage, lastPage, onlyAnnotatedPages, outputPath, fontsPath);
   }
 
 
@@ -215,6 +237,7 @@ public class AnnotateOptions {
     sb.append("    lastPage: ").append(toIndentedString(lastPage)).append("\n");
     sb.append("    onlyAnnotatedPages: ").append(toIndentedString(onlyAnnotatedPages)).append("\n");
     sb.append("    outputPath: ").append(toIndentedString(outputPath)).append("\n");
+    sb.append("    fontsPath: ").append(toIndentedString(fontsPath)).append("\n");
     sb.append("}");
     return sb.toString();
   }

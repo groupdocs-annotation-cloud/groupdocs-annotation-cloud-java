@@ -357,6 +357,9 @@ public class AnnotationInfo {
   @SerializedName("angle")
   private Double angle = null;
 
+  @SerializedName("zindex")
+  private Integer zindex = null;
+
   @SerializedName("url")
   private String url = null;
 
@@ -829,6 +832,24 @@ public class AnnotationInfo {
     this.angle = angle;
   }
 
+  public AnnotationInfo zindex(Integer zindex) {
+    this.zindex = zindex;
+    return this;
+  }
+
+   /**
+   * Gets or sets z-index. Default value is 0 The z-index property specifies the stack order of an element.
+   * @return zindex
+  **/
+  @ApiModelProperty(required = true, value = "Gets or sets z-index. Default value is 0 The z-index property specifies the stack order of an element.")
+  public Integer getZindex() {
+    return zindex;
+  }
+
+  public void setZindex(Integer zindex) {
+    this.zindex = zindex;
+  }
+
   public AnnotationInfo url(String url) {
     this.url = url;
     return this;
@@ -900,13 +921,14 @@ public class AnnotationInfo {
         Objects.equals(this.fontSize, annotationInfo.fontSize) &&
         Objects.equals(this.opacity, annotationInfo.opacity) &&
         Objects.equals(this.angle, annotationInfo.angle) &&
+        Objects.equals(this.zindex, annotationInfo.zindex) &&
         Objects.equals(this.url, annotationInfo.url) &&
         Objects.equals(this.imagePath, annotationInfo.imagePath);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, text, textToReplace, horizontalAlignment, verticalAlignment, creatorId, creatorName, creatorEmail, box, points, pageNumber, annotationPosition, svgPath, type, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, fontFamily, fontSize, opacity, angle, url, imagePath);
+    return Objects.hash(id, text, textToReplace, horizontalAlignment, verticalAlignment, creatorId, creatorName, creatorEmail, box, points, pageNumber, annotationPosition, svgPath, type, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, fontFamily, fontSize, opacity, angle, zindex, url, imagePath);
   }
 
 
@@ -940,6 +962,7 @@ public class AnnotationInfo {
     sb.append("    fontSize: ").append(toIndentedString(fontSize)).append("\n");
     sb.append("    opacity: ").append(toIndentedString(opacity)).append("\n");
     sb.append("    angle: ").append(toIndentedString(angle)).append("\n");
+    sb.append("    zindex: ").append(toIndentedString(zindex)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    imagePath: ").append(toIndentedString(imagePath)).append("\n");
     sb.append("}");
