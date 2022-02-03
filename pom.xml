@@ -5,7 +5,7 @@
     <artifactId>groupdocs-annotation-cloud</artifactId>
     <packaging>jar</packaging>
     <name>groupdocs-annotation-cloud</name>
-    <version>21.6</version>
+    <version>22.2</version>
     <url>https://github.com/groupdocs-annotation-cloud/groupdocs-annotation-cloud-java</url>
     <description>Java library for communicating with the GroupDocs.Annotation Cloud API</description>
     <scm>

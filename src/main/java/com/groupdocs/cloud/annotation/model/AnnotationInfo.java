@@ -226,7 +226,9 @@ public class AnnotationInfo {
     
     WATERMARK("Watermark"),
     
-    IMAGE("Image");
+    IMAGE("Image"),
+    
+    TEXTSQUIGGLY("TextSquiggly");
 
     private String value;
 
@@ -345,6 +347,9 @@ public class AnnotationInfo {
   @SerializedName("backgroundColor")
   private Integer backgroundColor = null;
 
+  @SerializedName("squigglyColor")
+  private Integer squigglyColor = null;
+
   @SerializedName("fontFamily")
   private String fontFamily = null;
 
@@ -365,6 +370,9 @@ public class AnnotationInfo {
 
   @SerializedName("imagePath")
   private String imagePath = null;
+
+  @SerializedName("autoScale")
+  private Boolean autoScale = null;
 
   public AnnotationInfo id(Integer id) {
     this.id = id;
@@ -760,6 +768,24 @@ public class AnnotationInfo {
     this.backgroundColor = backgroundColor;
   }
 
+  public AnnotationInfo squigglyColor(Integer squigglyColor) {
+    this.squigglyColor = squigglyColor;
+    return this;
+  }
+
+   /**
+   * Gets or sets annotation color
+   * @return squigglyColor
+  **/
+  @ApiModelProperty(value = "Gets or sets annotation color")
+  public Integer getSquigglyColor() {
+    return squigglyColor;
+  }
+
+  public void setSquigglyColor(Integer squigglyColor) {
+    this.squigglyColor = squigglyColor;
+  }
+
   public AnnotationInfo fontFamily(String fontFamily) {
     this.fontFamily = fontFamily;
     return this;
@@ -886,6 +912,24 @@ public class AnnotationInfo {
     this.imagePath = imagePath;
   }
 
+  public AnnotationInfo autoScale(Boolean autoScale) {
+    this.autoScale = autoScale;
+    return this;
+  }
+
+   /**
+   * Sets auto scale for watermark annotation
+   * @return autoScale
+  **/
+  @ApiModelProperty(required = true, value = "Sets auto scale for watermark annotation")
+  public Boolean getAutoScale() {
+    return autoScale;
+  }
+
+  public void setAutoScale(Boolean autoScale) {
+    this.autoScale = autoScale;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -917,18 +961,20 @@ public class AnnotationInfo {
         Objects.equals(this.penWidth, annotationInfo.penWidth) &&
         Objects.equals(this.penStyle, annotationInfo.penStyle) &&
         Objects.equals(this.backgroundColor, annotationInfo.backgroundColor) &&
+        Objects.equals(this.squigglyColor, annotationInfo.squigglyColor) &&
         Objects.equals(this.fontFamily, annotationInfo.fontFamily) &&
         Objects.equals(this.fontSize, annotationInfo.fontSize) &&
         Objects.equals(this.opacity, annotationInfo.opacity) &&
         Objects.equals(this.angle, annotationInfo.angle) &&
         Objects.equals(this.zindex, annotationInfo.zindex) &&
         Objects.equals(this.url, annotationInfo.url) &&
-        Objects.equals(this.imagePath, annotationInfo.imagePath);
+        Objects.equals(this.imagePath, annotationInfo.imagePath) &&
+        Objects.equals(this.autoScale, annotationInfo.autoScale);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, text, textToReplace, horizontalAlignment, verticalAlignment, creatorId, creatorName, creatorEmail, box, points, pageNumber, annotationPosition, svgPath, type, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, fontFamily, fontSize, opacity, angle, zindex, url, imagePath);
+    return Objects.hash(id, text, textToReplace, horizontalAlignment, verticalAlignment, creatorId, creatorName, creatorEmail, box, points, pageNumber, annotationPosition, svgPath, type, replies, createdOn, fontColor, penColor, penWidth, penStyle, backgroundColor, squigglyColor, fontFamily, fontSize, opacity, angle, zindex, url, imagePath, autoScale);
   }
 
 
@@ -958,6 +1004,7 @@ public class AnnotationInfo {
     sb.append("    penWidth: ").append(toIndentedString(penWidth)).append("\n");
     sb.append("    penStyle: ").append(toIndentedString(penStyle)).append("\n");
     sb.append("    backgroundColor: ").append(toIndentedString(backgroundColor)).append("\n");
+    sb.append("    squigglyColor: ").append(toIndentedString(squigglyColor)).append("\n");
     sb.append("    fontFamily: ").append(toIndentedString(fontFamily)).append("\n");
     sb.append("    fontSize: ").append(toIndentedString(fontSize)).append("\n");
     sb.append("    opacity: ").append(toIndentedString(opacity)).append("\n");
@@ -965,6 +1012,7 @@ public class AnnotationInfo {
     sb.append("    zindex: ").append(toIndentedString(zindex)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    imagePath: ").append(toIndentedString(imagePath)).append("\n");
+    sb.append("    autoScale: ").append(toIndentedString(autoScale)).append("\n");
     sb.append("}");
     return sb.toString();
   }

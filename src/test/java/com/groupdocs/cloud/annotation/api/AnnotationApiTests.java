@@ -52,7 +52,6 @@ public class AnnotationApiTests extends BaseApiTest
             {
                 "cells\\one-page.xlsx,",
                 "diagram\\one-page.vsd,",
-                "email\\one-page.emlx,",
                 "images\\one-page.png,",
                  "pdf\\one-page.pdf,",
                 "slides\\one-page.pptx,",
@@ -138,7 +137,6 @@ public class AnnotationApiTests extends BaseApiTest
     @Parameters(
             {
                 "diagram\\one-page.vsd,,false,0,0,",
-                "email\\one-page.emlx,,false,0,0,",
                 "images\\one-page.png,,false,0,0,",
                 "pdf\\one-page.pdf,,false,-1,-1,",
                 "slides\\one-page.pptx,,false,0,0,",
