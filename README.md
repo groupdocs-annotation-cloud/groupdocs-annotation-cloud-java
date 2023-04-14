@@ -24,7 +24,7 @@ Add following repository and dependency to your project's POM
 <dependency>
     <groupId>com.groupdocs</groupId>
     <artifactId>groupdocs-annotation-cloud</artifactId>
-    <version>22.2</version>
+    <version>23.4</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -43,7 +43,7 @@ repositories {
 ...
 dependencies {
     ...
-    implementation 'com.groupdocs:groupdocs-annotation-cloud:22.2'
+    implementation 'com.groupdocs:groupdocs-annotation-cloud:23.4'
 }
 ```
 
@@ -100,7 +100,7 @@ mvn package -D maven.test.skip=true
 
 Then manually install the following JARs:
 
-* target/groupdocs-annotation-cloud-22.2.jar
+* target/groupdocs-annotation-cloud-23.4.jar
 * target/lib/*.jar
 
 ## Licensing
